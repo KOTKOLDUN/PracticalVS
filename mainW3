@@ -1,0 +1,33 @@
+#include <iostream>
+#include <Windows.h>
+using namespace std;
+
+int main() {
+	setlocale(0, "");
+	int num;
+	int sum = 0;
+	int count = 0;
+
+	cout << "Введите число ";
+	cin >> num;
+
+	
+	while (num != 0) {
+
+		if (num > 0) {
+			count++;
+			sum += num;
+
+		}
+		cout << "Введите число ";
+		cin >> num;
+}
+	cout << "\nКоличество чиселок:" << count << endl;
+	cout << "Сумма: " << sum << endl;
+
+
+
+
+		int _;
+		cin >> _;
+}
