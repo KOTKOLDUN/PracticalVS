@@ -1,0 +1,31 @@
+#include <iostream>
+#include <Windows.h>
+using namespace std;
+
+int main() {
+	int num;
+
+
+	setlocale(0, "");
+	cout << "[+]Введите число: ";
+	cin >> num;
+
+
+	if (num > 0 && num % 1 == 0) {
+
+		while (num > 0) {
+			cout << "Отчет " << num << endl;
+			num--;
+
+			Sleep(1000);
+		}
+		cout << "Старт!!!";
+	}
+	
+	
+	else { "Ошибка ввода числа!!! "; }
+
+
+		int _;
+		cin >> _;
+}
