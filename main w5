@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    setlocale(0, "");
+    int num;
+    cout << "[+] Введите число: ";
+    cin >> num;
+
+    int i = 1;  
+
+    cout << endl;  
+
+    
+    while (i <= 10) {
+        cout << "[+] " << num << " x " << i << " = " << num * i;
+
+        cout << endl;
+       
+
+      i++; 
+    }
+
+    return 0;
+}
