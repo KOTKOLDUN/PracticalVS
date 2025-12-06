@@ -1,0 +1,218 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    setlocale(0, "");
+    vector<int> vec;
+    int choice;
+
+    while (true) {
+        system("cls");
+
+        
+        cout << "[ # ] Вывод вектора: ";
+        if (vec.empty()) {
+            cout << "(пустой)";
+        }
+        else {
+            for (int x : vec) {
+                cout << x << " ";
+            }
+        }
+        cout << "\n\n";
+
+        cout << "[ 1 ] Внести числа\n";
+        cout << "[ 0 ] Закрыть программу\n\n";
+        cout << "[+] Ввод: ";
+        cin >> choice;
+
+        
+        if (choice == 0) {
+            system("cls");
+            cout << "Вы закрыли программу\n";
+            return 0;
+        }
+
+       
+        if (choice == 1) {
+            system("cls");
+            vec.clear();
+
+            cout << "[ Меню заполнения ]\n\n";
+            cout << "Введите числа (0 - завершить ввод):\n\n";
+
+            int x;
+            int index = 0;
+
+            while (true) {
+                cout << "[+] Инициализация | ячейка " << index << ": ";
+                cin >> x;
+                if (x == 0) {
+                    break;
+                }
+                vec.push_back(x);
+                index++;
+            }
+
+          
+            while (true) {
+                system("cls");
+
+                cout << "[ Текущий вектор ]: ";
+                if (vec.empty()) {
+                    cout << "(пустой)";
+                }
+                else {
+                    for (int x : vec) {
+                        cout << x << " ";
+                    }
+                }
+                cout << "\n\n";
+
+                cout << "[ # ] Настройки вектора:\n\n";
+                cout << "[1] Вывести минимальный элемент\n";
+                cout << "[2] Вывести максимальный элемент\n";
+                cout << "[3] Перемножить вектор\n";
+                cout << "[4] Сложить вектор\n";
+                cout << "[5] Разделить вектор\n";
+                cout << "[6] Обнулить вектор\n";
+                cout << "[7] Сортировать по возрастанию\n";
+                cout << "[8] Сортировать по убыванию\n";
+                cout << "\n[0] Задать новые значения вектору\n";
+                cout << "[+] Ввод: ";
+
+                cin >> choice;
+
+                if (choice == 0) {
+                    break;
+                }
+
+                if (vec.empty()) {
+                    cout << "\nВектор пустой!\n";
+                    system("pause");
+                    continue;
+                }
+
+                if (choice == 1) {
+                    int mn = vec[0];
+                    for (int y : vec) {
+                        if (y < mn) mn = y;
+                    }
+
+                    cout << "\n[#] Результат:\n" << mn << "\n\n";
+                    system("pause");
+                }
+                else if (choice == 2) {
+                    int mx = vec[0];
+                    for (int y : vec) {
+                        if (y > mx) mx = y;
+                    }
+
+                    cout << "\n[#] Результат:\n" << mx << "\n\n";
+                    system("pause");
+                }
+                else if (choice == 3) {
+                    int m;
+                    cout << "Введите множитель: ";
+                    cin >> m;
+
+                    for (int& y : vec) {
+                        y *= m;
+                    }
+
+                    cout << "\n[#] Результат: умножение выполнено\n\n";
+                    system("pause");
+                }
+                else if (choice == 4) {
+                    int a;
+                    cout << "Введите число для добавления: ";
+                    cin >> a;
+
+                    for (int& y : vec) {
+                        y += a;
+                    }
+
+                    cout << "\n[#] Результат: сложение выполнено\n\n";
+                    system("pause");
+                }
+                else if (choice == 5) {
+                    int d;
+
+                    
+                    cout << "Введите делитель: ";
+                    cin >> d;
+
+                    if (d == 0) {
+                        cout << "\nОшибка: деление на 0!\n\n";
+                        system("pause");
+                        continue;
+                    }
+
+                    for (int& y : vec) {
+                        y /= d;
+                    }
+
+                    cout << "\n[#] Результат: деление выполнено\n\n";
+                    system("pause");
+                }
+                else if (choice == 6) {
+                    for (int& y : vec) {
+                        y = 0;
+                    }
+
+                    cout << "\n[#] Результат: вектор обнулен\n\n";
+                    system("pause");
+                }
+                else if (choice == 7) {
+                    int count = 0;
+                    for (int y : vec) {
+                        count++;
+                    }
+
+                    for (int i = 0; i < count - 1; i++) {
+                        for (int j = 0; j < count - i - 1; j++) {
+                            if (vec[j] > vec[j + 1]) {
+                                int temp = vec[j];
+                                vec[j] = vec[j + 1];
+                                vec[j + 1] = temp;
+                            }
+                        }
+                    }
+
+                    cout << "\n[#] Результат: вектор отсортирован по возрастанию\n\n";
+                    system("pause");
+                }
+                else if (choice == 8) {
+                    int count = 0;
+                    for (int y : vec) {
+                        count++;
+                    }
+
+                    for (int i = 0; i < count - 1; i++) {
+                        for (int j = 0; j < count - i - 1; j++) {
+                            if (vec[j] < vec[j + 1]) {
+                                int temp = vec[j];
+                                vec[j] = vec[j + 1];
+                                vec[j + 1] = temp;
+                            }
+                        }
+                    }
+
+                    cout << "\n[#] Результат: вектор отсортирован по убыванию\n\n";
+                    system("pause");
+                }
+                else {
+                    cout << "\nНеверный выбор!\n";
+                    system("pause");
+                }
+            }
+        }
+        else {
+            cout << "\nНеверный выбор!\n";
+            system("pause");
+        }
+    }
+
+    return 0;
+}
