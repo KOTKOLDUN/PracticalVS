@@ -1,0 +1,41 @@
+#include <iostream>
+#include <windows.h>  
+using namespace std;
+
+int main() {
+    setlocale(0, "");
+    while (true) {  
+        string correct_password = "12345";
+        string password;
+        int attempts = 3;
+
+       
+        while (attempts > 0) {
+            system("cls");
+
+            cout << "Введите пароль: ";
+            cin >> password;
+
+            if (password == correct_password) {
+                system("cls");
+                cout << "\x1b[92mДобро пожаловать!\x1b[0m" << endl;
+                Sleep(2000);
+                return 0;  
+            }
+
+            attempts--;
+            system("cls");
+            cout << "Неверный пароль! Осталось попыток: " << attempts << endl;
+            Sleep(1000);
+        }
+
+       
+        system("cls");
+        cout << "\x1b[91mДоступ заблокирован! Ожидание 10 секунд...\x1b[0m" << endl;
+        Sleep(10000);
+
+       
+    }
+
+    return 0;
+}
