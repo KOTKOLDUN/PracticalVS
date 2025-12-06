@@ -1,0 +1,35 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    setlocale(0, "");
+    int number;
+    int sum = 0;
+    int count = 0;
+
+    cout << "[+] Введите число: ";
+    cin >> number;
+
+    while (number != 0) {
+        sum += number;
+        count++;
+
+        cout << "[+] Введите число: ";
+        cin >> number;
+    }
+
+    if (count == 0) {
+        cout << "[+] Вы не ввели ни одного числа (кроме 0)" << endl;
+    }
+    else {
+        cout << "[+] Среднее арифметическое: " << sum / count;
+
+        
+        if (sum % count != 0) {
+            cout << " (целая часть)";
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
