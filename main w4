@@ -1,0 +1,29 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    setlocale(0, "");
+    int num;
+    cout << "[+] Введите число: ";
+    cin >> num;
+
+    int count = 0;
+
+    if (num == 0) {
+        count = 1;
+    }
+    else {
+       
+        int temp = (num < 0) ? -num : num;
+
+        
+        while (temp > 0) {
+            temp = temp / 10; 
+            count++;
+        }
+    }
+
+    cout << "[+] Количество цифр: " << count << endl;
+
+    return 0;
+}
