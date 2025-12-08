@@ -1,0 +1,50 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    setlocale(0, "");
+
+    int choice;
+    int size;
+    char c;
+
+    
+    cout << "[+] Программа - \"Геометрические фигуры\"\n";
+    cout << "[1] Рекурсивный квадрат\n\n";
+
+    cout << "[+] Выберите фигуру: ";
+    cin >> choice;
+
+    system("cls"); 
+
+    if (choice == 1) {
+        cout << "[+] Фигура: \"Рекурсивный квадрат\"\n\n";
+
+        cout << "[+] Размер: ";
+        cin >> size;
+
+        cout << "[+] Текстура: ";
+        cin >> c;
+
+        cout << "\n\x1b[92m[+] Результат:\x1b[0m\n\n";
+
+        
+        for (int y = 0; y < size; y++) {
+            for (int x = 0; x < size; x++) {
+
+                int layer = min(min(x, y), min(size - 1 - x, size - 1 - y));
+
+                if (layer % 2 == 0)
+                    cout << c << ' ';
+                else
+                    cout << "\x1b[91m. \x1b[0m";
+            }
+            cout << endl;
+        }
+    }
+    else {
+        cout << "Такой фигуры нет.\n";
+    }
+
+    return 0;
+}
