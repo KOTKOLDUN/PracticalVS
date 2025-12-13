@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <windows.h>
 using namespace std;
@@ -124,10 +125,10 @@ int main() {
 
 				cout << "Приветствуем вас!" << endl;
 				cout << "Меню:" << endl;
-				cout << "- [1] Начать игру" << endl;
-				cout << "- [2] Настройки" << endl;
-				cout << "- [3] Правила" << endl;
-				cout << "- [0] Выйти" << endl;
+				cout << " [1] Начать игру" << endl;
+				cout << " [2] Настройки" << endl;
+				cout << " [3] Правила" << endl << endl;
+				cout << " [0] Выйти" << endl;
 				cin >> a;
 
 				break;
@@ -147,8 +148,10 @@ int main() {
 
 					//1
 					cout << "Что такое объект?" << endl;
-					cout << "[1]Экземпляр класса " << endl << "[2]Тип цикла" << endl;
-					cout << "[3]Функция " << endl << "[4]Переменная" << endl;
+					cout << "[1]Экземпляр класса " << endl;
+					cout << "[2]Тип цикла" << endl;
+					cout << "[3]Функция " << endl; 
+					cout << "[4]Переменная" << endl;
 					cout << "Выбрать ответ:";
 					cin >> c;
 
@@ -170,8 +173,10 @@ int main() {
 
 					//2
 					cout << "какой язык программирования используется для веб-разработки?" << endl;
-					cout << "[1] Python " << "[2]JavaScript" << endl;
-					cout << "[3]C++ " << "[4] SQL" << endl;
+					cout << "[1] Python " << endl; 
+					cout << "[2]JavaScript" << endl;
+					cout << "[3]C++ " << endl;
+					cout << "[4] SQL" << endl;
 					cout << "Выбрать ответ:";
 					cin >> c;
 
@@ -194,8 +199,10 @@ int main() {
 
 					//3
 					cout << "какой оператор используется для выполнения условий?" << endl;
-					cout << "[1] for " << "[2]while" << endl;
-					cout << "[3]if " << "[4] switch" << endl;
+					cout << "[1] for " << endl; 
+					cout << "[2]while" << endl;
+					cout << "[3]if " << endl;
+					cout << "[4] switch" << endl;
 					cout << "Выбрать ответ:";
 					cin >> c;
 
