@@ -10,7 +10,7 @@ int main() {
 	short select;  //выбрать пункт меню
 	short exit;  //выход из пунктов меню (правила, настройки, начать игру)
 	short life = 3;  // жизни игрока
-	short ocko = 0;  // кол-во верных ответов
+	short o4ko = 0;  // кол-во верных ответов
 	short setting;  //Выбор настроек
 	string UserName = "Игрок";  // Имя пользователя
 	short num = 12;  // кол-во вопросов
@@ -55,6 +55,7 @@ int main() {
 			cout << "Игрок проходит дальше за правильный ответ;" << endl;
 			cout << "Игрок теряет жизнь при неправильном ответе;" << endl;
 			cout << "[0] Выйти" << endl;
+			cout << "[/]Выберите пункт: ";
 			cin >> exit;
 
 			system("cls");
@@ -68,6 +69,7 @@ int main() {
 				cout << "[2] Настройки" << endl;
 				cout << "[3] Правила" << endl;
 				cout << "[0] Выйти" << endl;
+				cout << "[/]Выберите пункт: ";
 				cin >> select;
 			}
 
@@ -84,6 +86,7 @@ int main() {
 			cout << "[2]Редактирование вопросов в игре. Можно заменить на 8 - 10 - 12" << endl;
 			cout << "[3]Редактировать цвет интерфейса (это могут быть: вопросы, ответы, меню, цифры, что угодно)" << endl;
 			cout << "[0]Выход" << endl;
+			cout << "[/]Выберите пункт: ";
 			cin >> setting;
 
 			system("cls");
@@ -110,14 +113,14 @@ int main() {
 
 			case 3:
 
-				cout << "Какой цвет хочешь? " << endl << "[5]Лиловый, [7]Белый : ";
+				cout << "Какой цвет хочешь? " << endl << "[1]Зеленый, [2]Белый : ";
 				cin >> color;
 
-				if (color == 5) {
-					system("color 5");
+				if (color == 1) {
+					system("color 1");
 					cout << "Цвет изменен на лиловый" << endl;
 				}
-				else if (color == 7) {
+				else if (color == 2) {
 					system("color 7");
 					cout << "Цвет изменен на белый" << endl;
 				}
@@ -157,379 +160,379 @@ int main() {
 
 
 		case 1: //игра
-			{
+		{
+			system("cls");
+			
+			life = 3;
+			o4ko = 0;
+
+			if (num == 12 or num == 10 or num == 8) {
+				cout << "Игрок: " << UserName << "  жизни: " << life << "  очки: " << o4ko << endl << endl;
+
+				// Вопрос 1
+				cout << "1. Что такое HTTP?" << endl;
+				cout << "[1] Язык разметки" << endl;
+				cout << "[2] Протокол передачи гипертекста" << endl;
+				cout << "[3] Среда разработки" << endl;
+				cout << "[4] Тип базы данных" << endl;
+				cout << "Выбрать ответ: ";
+				cin >> answer;
+
+				if (answer == 2) {
+					o4ko++;
+					cout << "\x1b[92mВерный ответ!!!\x1b[0m" << endl;
+				}
+				else {
+					cout << "\x1b[91mНе верный ответ\x1b[0m" << endl;
+					life--;
+					if (o4ko > 0) o4ko--;
+				}
+				Sleep(2000);
 				system("cls");
-				// Сброс жизней и очков при начале новой игры
-				life = 3;
-				ocko = 0;
-				
-				if (num == 12 or num == 10 or num == 8) {
-					cout << "Игрок: " << UserName << "  жизни: " << life << "  очки: " << ocko << endl << endl;
+				cout << "Игрок: " << UserName << "  жизни: " << life << "  очки: " << o4ko << endl << endl;
 
-					// Вопрос 1
-					cout << "1. Что такое HTTP?" << endl;
-					cout << "[1] Язык разметки" << endl;
-					cout << "[2] Протокол передачи гипертекста" << endl;
-					cout << "[3] Среда разработки" << endl;
-					cout << "[4] Тип базы данных" << endl;
-					cout << "Выбрать ответ: ";
-					cin >> answer;
-
-					if (answer == 2) {
-						ocko++;
-						cout << "\x1b[92mВерный ответ!!!\x1b[0m" << endl;
-					}
-					else {
-						cout << "\x1b[91mНе верный ответ\x1b[0m" << endl;
-						life--;
-						if (ocko > 0) ocko--;
-					}
-					Sleep(2000);
-					system("cls");
-					cout << "Игрок: " << UserName << "  жизни: " << life << "  очки: " << ocko << endl << endl;
-
-					if (life <= 0) {
-						cout << "У вас закончились жизни! Игра окончена." << endl;
-						cout << "Ваш счет: " << ocko << endl;
-						Sleep(3000);
-						return 0;
-					}
-
-					// Вопрос 2
-					cout << "2. Какой язык программирования считается основным для веб-интерфейсов?" << endl;
-					cout << "[1] Python" << endl;
-					cout << "[2] JavaScript" << endl;
-					cout << "[3] C++" << endl;
-					cout << "[4] Java" << endl;
-					cout << "Выбрать ответ: ";
-					cin >> answer;
-
-					if (answer == 2) {
-						ocko++;
-						cout << "\x1b[92mВерный ответ!!!\x1b[0m" << endl;
-					}
-					else {
-						cout << "\x1b[91mНе верный ответ\x1b[0m" << endl;
-						life--;
-						if (ocko > 0) ocko--;
-					}
-					Sleep(2000);
-					system("cls");
-					cout << "Игрок: " << UserName << "  жизни: " << life << "  очки: " << ocko << endl << endl;
-
-					if (life <= 0) {
-						cout << "У вас закончились жизни! Игра окончена." << endl;
-						cout << "Ваш счет: " << ocko << endl;
-						Sleep(3000);
-						return 0;
-					}
-
-					// Вопрос 3
-					cout << "3. Что означает аббревиатура SQL?" << endl;
-					cout << "[1] Simple Question Language" << endl;
-					cout << "[2] Structured Query Language" << endl;
-					cout << "[3] Sequential Query Logic" << endl;
-					cout << "[4] Standard Question List" << endl;
-					cout << "Выбрать ответ: ";
-					cin >> answer;
-
-					if (answer == 2) {
-						ocko++;
-						cout << "\x1b[92mВерный ответ!!!\x1b[0m" << endl;
-					}
-					else {
-						cout << "\x1b[91mНе верный ответ\x1b[0m" << endl;
-						life--;
-						if (ocko > 0) ocko--;
-					}
-					Sleep(2000);
-					system("cls");
-					cout << "Игрок: " << UserName << "  жизни: " << life << "  очки: " << ocko << endl << endl;
-
-					if (life <= 0) {
-						cout << "У вас закончились жизни! Игра окончена." << endl;
-						cout << "Ваш счет: " << ocko << endl;
-						Sleep(3000);
-						return 0;
-					}
-
-					// Вопрос 4
-					cout << "4. Какой символ используется для однострочного комментария в Python?" << endl;
-					cout << "[1] //" << endl;
-					cout << "[2] #" << endl;
-					cout << "[3] --" << endl;
-					cout << "[4] /*" << endl;
-					cout << "Выбрать ответ: ";
-					cin >> answer;
-
-					if (answer == 2) {
-						ocko++;
-						cout << "\x1b[92mВерный ответ!!!\x1b[0m" << endl;
-					}
-					else {
-						cout << "\x1b[91mНе верный ответ\x1b[0m" << endl;
-						life--;
-						if (ocko > 0) ocko--;
-					}
-					Sleep(2000);
-					system("cls");
-					cout << "Игрок: " << UserName << "  жизни: " << life << "  очки: " << ocko << endl << endl;
-
-					if (life <= 0) {
-						cout << "У вас закончились жизни! Игра окончена." << endl;
-						cout << "Ваш счет: " << ocko << endl;
-						Sleep(3000);
-						return 0;
-					}
-
-					if (num == 8) {
-						cout << "Игра завершена!" << endl;
-						cout << "Ваш счет: " << ocko << " из 8" << endl;
-						Sleep(3000);
-						return 0;
-					}
-
-					// Вопрос 5
-					cout << "5. Что такое 'ветвление' в Git?" << endl;
-					cout << "[1] Ошибка компиляции" << endl;
-					cout << "[2] Копия репозитория для изолированной работы" << endl;
-					cout << "[3] Тип данных" << endl;
-					cout << "[4] Команда для удаления файлов" << endl;
-					cout << "Выбрать ответ: ";
-					cin >> answer;
-
-					if (answer == 2) {
-						ocko++;
-						cout << "\x1b[92mВерный ответ!!!\x1b[0m" << endl;
-					}
-					else {
-						cout << "\x1b[91mНе верный ответ\x1b[0m" << endl;
-						life--;
-						if (ocko > 0) ocko--;
-					}
-					Sleep(2000);
-					system("cls");
-					cout << "Игрок: " << UserName << "  жизни: " << life << "  очки: " << ocko << endl << endl;
-
-					if (life <= 0) {
-						cout << "У вас закончились жизни! Игра окончена." << endl;
-						cout << "Ваш счет: " << ocko << endl;
-						Sleep(3000);
-						return 0;
-					}
-
-					// Вопрос 6
-					cout << "6. Какой тип данных в Python является неизменяемым?" << endl;
-					cout << "[1] Список (list)" << endl;
-					cout << "[2] Словарь (dict)" << endl;
-					cout << "[3] Кортеж (tuple)" << endl;
-					cout << "[4] Множество (set)" << endl;
-					cout << "Выбрать ответ: ";
-					cin >> answer;
-
-					if (answer == 3) {
-						ocko++;
-						cout << "\x1b[92mВерный ответ!!!\x1b[0m" << endl;
-					}
-					else {
-						cout << "\x1b[91mНе верный ответ\x1b[0m" << endl;
-						life--;
-						if (ocko > 0) ocko--;
-					}
-					Sleep(2000);
-					system("cls");
-					cout << "Игрок: " << UserName << "  жизни: " << life << "  очки: " << ocko << endl << endl;
-
-					if (life <= 0) {
-						cout << "У вас закончились жизни! Игра окончена." << endl;
-						cout << "Ваш счет: " << ocko << endl;
-						Sleep(3000);
-						return 0;
-					}
-
-					// Вопрос 7
-					cout << "7. Что такое API?" << endl;
-					cout << "[1] Автоматический процессор инструкций" << endl;
-					cout << "[2] Интерфейс программирования приложений" << endl;
-					cout << "[3] Алгоритм поиска информации" << endl;
-					cout << "[4] Протокол передачи файлов" << endl;
-					cout << "Выбрать ответ: ";
-					cin >> answer;
-
-					if (answer == 2) {
-						ocko++;
-						cout << "\x1b[92mВерный ответ!!!\x1b[0m" << endl;
-					}
-					else {
-						cout << "\x1b[91mНе верный ответ\x1b[0m" << endl;
-						life--;
-						if (ocko > 0) ocko--;
-					}
-					Sleep(2000);
-					system("cls");
-					cout << "Игрок: " << UserName << "  жизни: " << life << "  очки: " << ocko << endl << endl;
-
-					if (life <= 0) {
-						cout << "У вас закончились жизни! Игра окончена." << endl;
-						cout << "Ваш счет: " << ocko << endl;
-						Sleep(3000);
-						return 0;
-					}
-
-					// Вопрос 8
-					cout << "8. Какой язык используется для стилизации веб-страниц?" << endl;
-					cout << "[1] HTML" << endl;
-					cout << "[2] SQL" << endl;
-					cout << "[3] CSS" << endl;
-					cout << "[4] JavaScript" << endl;
-					cout << "Выбрать ответ: ";
-					cin >> answer;
-
-					if (answer == 3) {
-						ocko++;
-						cout << "\x1b[92mВерный ответ!!!\x1b[0m" << endl;
-					}
-					else {
-						cout << "\x1b[91mНе верный ответ\x1b[0m" << endl;
-						life--;
-						if (ocko > 0) ocko--;
-					}
-					Sleep(2000);
-					system("cls");
-					cout << "Игрок: " << UserName << "  жизни: " << life << "  очки: " << ocko << endl << endl;
-
-					if (life <= 0) {
-						cout << "У вас закончились жизни! Игра окончена." << endl;
-						cout << "Ваш счет: " << ocko << endl;
-						Sleep(3000);
-						return 0;
-					}
-
-					if (num == 10) {
-						cout << "Игра завершена!" << endl;
-						cout << "Ваш счет: " << ocko << " из 10" << endl;
-						Sleep(3000);
-						return 0;
-					}
-
-					// Вопрос 9
-					cout << "9. Что делает оператор '===' в JavaScript?" << endl;
-					cout << "[1] Присваивание значения" << endl;
-					cout << "[2] Сравнение с приведением типов" << endl;
-					cout << "[3] Строгое сравнение (значение и тип)" << endl;
-					cout << "[4] Объявление переменной" << endl;
-					cout << "Выбрать ответ: ";
-					cin >> answer;
-
-					if (answer == 3) {
-						ocko++;
-						cout << "\x1b[92mВерный ответ!!!\x1b[0m" << endl;
-					}
-					else {
-						cout << "\x1b[91mНе верный ответ\x1b[0m" << endl;
-						life--;
-						if (ocko > 0) ocko--;
-					}
-					Sleep(2000);
-					system("cls");
-					cout << "Игрок: " << UserName << "  жизни: " << life << "  очки: " << ocko << endl << endl;
-
-					if (life <= 0) {
-						cout << "У вас закончились жизни! Игра окончена." << endl;
-						cout << "Ваш счет: " << ocko << endl;
-						Sleep(3000);
-						return 0;
-					}
-
-					// Вопрос 10
-					cout << "10. Что такое 'рекурсия'?" << endl;
-					cout << "[1] Вызов функцией самой себя" << endl;
-					cout << "[2] Цикл for" << endl;
-					cout << "[3] Ошибка выполнения" << endl;
-					cout << "[4] Тип данных" << endl;
-					cout << "Выбрать ответ: ";
-					cin >> answer;
-
-					if (answer == 1) {
-						ocko++;
-						cout << "\x1b[92mВерный ответ!!!\x1b[0m" << endl;
-					}
-					else {
-						cout << "\x1b[91mНе верный ответ\x1b[0m" << endl;
-						life--;
-						if (ocko > 0) ocko--;
-					}
-					Sleep(2000);
-					system("cls");
-					cout << "Игрок: " << UserName << "  жизни: " << life << "  очки: " << ocko << endl << endl;
-
-					if (life <= 0) {
-						cout << "У вас закончились жизни! Игра окончена." << endl;
-						cout << "Ваш счет: " << ocko << endl;
-						Sleep(3000);
-						return 0;
-					}
-
-					// Вопрос 11
-					cout << "11. Какой порт обычно используется для HTTPS?" << endl;
-					cout << "[1] 80" << endl;
-					cout << "[2] 21" << endl;
-					cout << "[3] 443" << endl;
-					cout << "[4] 3306" << endl;
-					cout << "Выбрать ответ: ";
-					cin >> answer;
-
-					if (answer == 3) {
-						ocko++;
-						cout << "\x1b[92mВерный ответ!!!\x1b[0m" << endl;
-					}
-					else {
-						cout << "\x1b[91mНе верный ответ\x1b[0m" << endl;
-						life--;
-						if (ocko > 0) ocko--;
-					}
-					Sleep(2000);
-					system("cls");
-					cout << "Игрок: " << UserName << "  жизни: " << life << "  очки: " << ocko << endl << endl;
-
-					if (life <= 0) {
-						cout << "У вас закончились жизни! Игра окончена." << endl;
-						cout << "Ваш счет: " << ocko << endl;
-						Sleep(3000);
-						return 0;
-					}
-
-					// Вопрос 12
-					cout << "12. Что такое DRY в программировании?" << endl;
-					cout << "[1] Don't Repeat Yourself" << endl;
-					cout << "[2] Data Recovery Yield" << endl;
-					cout << "[3] Dynamic Resource YAML" << endl;
-					cout << "[4] Digital Runtime Yielding" << endl;
-					cout << "Выбрать ответ: ";
-					cin >> answer;
-
-					if (answer == 1) {
-						ocko++;
-						cout << "\x1b[92mВерный ответ!!!\x1b[0m" << endl;
-					}
-					else {
-						cout << "\x1b[91mНе верный ответ\x1b[0m" << endl;
-						life--;
-						if (ocko > 0) ocko--;
-					}
-					Sleep(2000);
-					system("cls");
-					cout << "Игра завершена!" << endl;
-					cout << "Ваш счет: " << ocko << " из 12" << endl;
+				if (life <= 0) {
+					cout << "У вас закончились жизни! Игра окончена." << endl;
+					cout << "Ваш счет: " << o4ko << endl;
 					Sleep(3000);
 					return 0;
 				}
-				else {
-					cout << "Недопустимое количество вопросов! Установите 8, 10 или 12." << endl;
-					Sleep(2000);
+
+				// Вопрос 2
+				cout << "2. Какой язык программирования считается основным для веб-интерфейсов?" << endl;
+				cout << "[1] Python" << endl;
+				cout << "[2] Java" << endl;
+				cout << "[3] C++" << endl;
+				cout << "[4] JavaScript" << endl;
+				cout << "Выбрать ответ: ";
+				cin >> answer;
+
+				if (answer == 4) {
+					o4ko++;
+					cout << "\x1b[92mВерный ответ!!!\x1b[0m" << endl;
 				}
+				else {
+					cout << "\x1b[91mНе верный ответ\x1b[0m" << endl;
+					life--;
+					if (o4ko > 0) o4ko--;
+				}
+				Sleep(2000);
+				system("cls");
+				cout << "Игрок: " << UserName << "  жизни: " << life << "  очки: " << o4ko << endl << endl;
+
+				if (life <= 0) {
+					cout << "У вас закончились жизни! Игра окончена." << endl;
+					cout << "Ваш счет: " << o4ko << endl;
+					Sleep(3000);
+					return 0;
+				}
+
+				// Вопрос 3
+				cout << "3. Что означает аббревиатура SQL?" << endl;
+				cout << "[1] Simple Question Language" << endl;
+				cout << "[2] Structured Query Language" << endl;
+				cout << "[3] Sequential Query Logic" << endl;
+				cout << "[4] Standard Question List" << endl;
+				cout << "Выбрать ответ: ";
+				cin >> answer;
+
+				if (answer == 2) {
+					o4ko++;
+					cout << "\x1b[92mВерный ответ!!!\x1b[0m" << endl;
+				}
+				else {
+					cout << "\x1b[91mНе верный ответ\x1b[0m" << endl;
+					life--;
+					if (o4ko > 0) o4ko--;
+				}
+				Sleep(2000);
+				system("cls");
+				cout << "Игрок: " << UserName << "  жизни: " << life << "  очки: " << o4ko << endl << endl;
+
+				if (life <= 0) {
+					cout << "У вас закончились жизни! Игра окончена." << endl;
+					cout << "Ваш счет: " << o4ko << endl;
+					Sleep(3000);
+					return 0;
+				}
+
+				// Вопрос 4
+				cout << "4. Какой символ используется для однострочного комментария в c++?" << endl;
+				cout << "[1] //" << endl;
+				cout << "[2] #" << endl;
+				cout << "[3] --" << endl;
+				cout << "[4] /*" << endl;
+				cout << "Выбрать ответ: ";
+				cin >> answer;
+
+				if (answer == 1) {
+					o4ko++;
+					cout << "\x1b[92mВерный ответ!!!\x1b[0m" << endl;
+				}
+				else {
+					cout << "\x1b[91mНе верный ответ\x1b[0m" << endl;
+					life--;
+					if (o4ko > 0) o4ko--;
+				}
+				Sleep(2000);
+				system("cls");
+				cout << "Игрок: " << UserName << "  жизни: " << life << "  очки: " << o4ko << endl << endl;
+
+				if (life <= 0) {
+					cout << "У вас закончились жизни! Игра окончена." << endl;
+					cout << "Ваш счет: " << o4ko << endl;
+					Sleep(3000);
+					return 0;
+				}
+
+				if (num == 8) {
+					cout << "Игра завершена!" << endl;
+					cout << "Ваш счет: " << o4ko << " из 8" << endl;
+					Sleep(3000);
+					return 0;
+				}
+
+				// Вопрос 5
+				cout << "5. Что такое 'ветвление' в Git?" << endl;
+				cout << "[1] Ошибка компиляции" << endl;
+				cout << "[2] Тип данных" << endl;
+				cout << "[3] Копия репозитория для изолированной работы" << endl;
+				cout << "[4] Команда для удаления файлов" << endl;
+				cout << "Выбрать ответ: ";
+				cin >> answer;
+
+				if (answer == 3) {
+					o4ko++;
+					cout << "\x1b[92mВерный ответ!!!\x1b[0m" << endl;
+				}
+				else {
+					cout << "\x1b[91mНе верный ответ\x1b[0m" << endl;
+					life--;
+					if (o4ko > 0) o4ko--;
+				}
+				Sleep(2000);
+				system("cls");
+				cout << "Игрок: " << UserName << "  жизни: " << life << "  очки: " << o4ko << endl << endl;
+
+				if (life <= 0) {
+					cout << "У вас закончились жизни! Игра окончена." << endl;
+					cout << "Ваш счет: " << o4ko << endl;
+					Sleep(3000);
+					return 0;
+				}
+
+				// Вопрос 6
+				cout << "6. Какой тип данных в Python является неизменяемым?" << endl;
+				cout << "[1] Список (list)" << endl;
+				cout << "[2] Словарь (dict)" << endl;
+				cout << "[3] Кортеж (tuple)" << endl;
+				cout << "[4] Множество (set)" << endl;
+				cout << "Выбрать ответ: ";
+				cin >> answer;
+
+				if (answer == 3) {
+					o4ko++;
+					cout << "\x1b[92mВерный ответ!!!\x1b[0m" << endl;
+				}
+				else {
+					cout << "\x1b[91mНе верный ответ\x1b[0m" << endl;
+					life--;
+					if (o4ko > 0) o4ko--;
+				}
+				Sleep(2000);
+				system("cls");
+				cout << "Игрок: " << UserName << "  жизни: " << life << "  очки: " << o4ko << endl << endl;
+
+				if (life <= 0) {
+					cout << "У вас закончились жизни! Игра окончена." << endl;
+					cout << "Ваш счет: " << o4ko << endl;
+					Sleep(3000);
+					return 0;
+				}
+
+				// Вопрос 7
+				cout << "7. Что такое API?" << endl;
+				cout << "[1] Автоматический процессор инструкций" << endl;
+				cout << "[2] Интерфейс программирования приложений" << endl;
+				cout << "[3] Алгоритм поиска информации" << endl;
+				cout << "[4] Протокол передачи файлов" << endl;
+				cout << "Выбрать ответ: ";
+				cin >> answer;
+
+				if (answer == 2) {
+					o4ko++;
+					cout << "\x1b[92mВерный ответ!!!\x1b[0m" << endl;
+				}
+				else {
+					cout << "\x1b[91mНе верный ответ\x1b[0m" << endl;
+					life--;
+					if (o4ko > 0) o4ko--;
+				}
+				Sleep(2000);
+				system("cls");
+				cout << "Игрок: " << UserName << "  жизни: " << life << "  очки: " << o4ko << endl << endl;
+
+				if (life <= 0) {
+					cout << "У вас закончились жизни! Игра окончена." << endl;
+					cout << "Ваш счет: " << o4ko << endl;
+					Sleep(3000);
+					return 0;
+				}
+
+				// Вопрос 8
+				cout << "8. Какой язык используется для стилизации веб-страниц?" << endl;
+				cout << "[1] HTML" << endl;
+				cout << "[2] SQL" << endl;
+				cout << "[3] CSS" << endl;
+				cout << "[4] JavaScript" << endl;
+				cout << "Выбрать ответ: ";
+				cin >> answer;
+
+				if (answer == 3) {
+					o4ko++;
+					cout << "\x1b[92mВерный ответ!!!\x1b[0m" << endl;
+				}
+				else {
+					cout << "\x1b[91mНе верный ответ\x1b[0m" << endl;
+					life--;
+					if (o4ko > 0) o4ko--;
+				}
+				Sleep(2000);
+				system("cls");
+				cout << "Игрок: " << UserName << "  жизни: " << life << "  очки: " << o4ko << endl << endl;
+
+				if (life <= 0) {
+					cout << "У вас закончились жизни! Игра окончена." << endl;
+					cout << "Ваш счет: " << o4ko << endl;
+					Sleep(3000);
+					return 0;
+				}
+
+				if (num == 10) {
+					cout << "Игра завершена!" << endl;
+					cout << "Ваш счет: " << o4ko << " из 10" << endl;
+					Sleep(3000);
+					return 0;
+				}
+
+				// Вопрос 9
+				cout << "9. Что делает оператор '===' в JavaScript?" << endl;
+				cout << "[1] Присваивание значения" << endl;
+				cout << "[2] Сравнение с приведением типов" << endl;
+				cout << "[3] Строгое сравнение (значение и тип)" << endl;
+				cout << "[4] Объявление переменной" << endl;
+				cout << "Выбрать ответ: ";
+				cin >> answer;
+
+				if (answer == 3) {
+					o4ko++;
+					cout << "\x1b[92mВерный ответ!!!\x1b[0m" << endl;
+				}
+				else {
+					cout << "\x1b[91mНе верный ответ\x1b[0m" << endl;
+					life--;
+					if (o4ko > 0) o4ko--;
+				}
+				Sleep(2000);
+				system("cls");
+				cout << "Игрок: " << UserName << "  жизни: " << life << "  очки: " << o4ko << endl << endl;
+
+				if (life <= 0) {
+					cout << "У вас закончились жизни! Игра окончена." << endl;
+					cout << "Ваш счет: " << o4ko << endl;
+					Sleep(3000);
+					return 0;
+				}
+
+				// Вопрос 10
+				cout << "10. Что такое 'рекурсия'?" << endl;
+				cout << "[1] Вызов функцией самой себя" << endl;
+				cout << "[2] Цикл for" << endl;
+				cout << "[3] Ошибка выполнения" << endl;
+				cout << "[4] Тип данных" << endl;
+				cout << "Выбрать ответ: ";
+				cin >> answer;
+
+				if (answer == 1) {
+					o4ko++;
+					cout << "\x1b[92mВерный ответ!!!\x1b[0m" << endl;
+				}
+				else {
+					cout << "\x1b[91mНе верный ответ\x1b[0m" << endl;
+					life--;
+					if (o4ko > 0) o4ko--;
+				}
+				Sleep(2000);
+				system("cls");
+				cout << "Игрок: " << UserName << "  жизни: " << life << "  очки: " << o4ko << endl << endl;
+
+				if (life <= 0) {
+					cout << "У вас закончились жизни! Игра окончена." << endl;
+					cout << "Ваш счет: " << o4ko << endl;
+					Sleep(3000);
+					return 0;
+				}
+
+				// Вопрос 11
+				cout << "11. Какой порт обычно используется для HTTPS?" << endl;
+				cout << "[1] 80" << endl;
+				cout << "[2] 21" << endl;
+				cout << "[3] 443" << endl;
+				cout << "[4] 3306" << endl;
+				cout << "Выбрать ответ: ";
+				cin >> answer;
+
+				if (answer == 3) {
+					o4ko++;
+					cout << "\x1b[92mВерный ответ!!!\x1b[0m" << endl;
+				}
+				else {
+					cout << "\x1b[91mНе верный ответ\x1b[0m" << endl;
+					life--;
+					if (o4ko > 0) o4ko--;
+				}
+				Sleep(2000);
+				system("cls");
+				cout << "Игрок: " << UserName << "  жизни: " << life << "  очки: " << o4ko << endl << endl;
+
+				if (life <= 0) {
+					cout << "У вас закончились жизни! Игра окончена." << endl;
+					cout << "Ваш счет: " << o4ko << endl;
+					Sleep(3000);
+					return 0;
+				}
+
+				// Вопрос 12
+				cout << "12. Кто самый лучший куратор?" << endl;
+				cout << "[1] Кристина Алексадровна" << endl;
+				cout << "[2] Загадочная красотка из 402(Кристина Александровна)" << endl;
+				cout << "[3] Наша любимая Кристина Александровна" << endl;
+				cout << "[4] Никто,Кристина Александровна лучшая" << endl;
+				cout << "Выбрать ответ: ";                              
+				cin >> answer;
+
+				if (answer == 5) {
+					o4ko++;
+					cout << "\x1b[92mВерный ответ!!!\x1b[0m" << endl;
+				}
+				else {
+					cout << "\x1b[91mНе верный ответ:\x1b[0m \x1b[92mКристина Александровна = самый лучший куратор на свете\x1b[0m" << endl;
+					life--;
+					if (o4ko > 0) o4ko--;
+				}
+				Sleep(2000);
+				system("cls");
+				cout << "Игра завершена!" << endl;
+				cout << "Ваш счет: " << o4ko << " из 12" << endl;
+				Sleep(3000);
+				return 0;
 			}
-			break;
+			else {
+				cout << "Недопустимое количество вопросов! Установите 8, 10 или 12." << endl;
+				Sleep(2000);
+			}
+		}
+		break;
 
 		default:
 			cout << "Неверный выбор! Попробуйте снова." << endl;
