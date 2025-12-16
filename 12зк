@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <windows.h>
 using namespace std;
@@ -162,7 +163,7 @@ int main() {
 		case 1: //игра
 		{
 			system("cls");
-			
+
 			life = 3;
 			o4ko = 0;
 
@@ -180,10 +181,10 @@ int main() {
 
 				if (answer == 2) {
 					o4ko++;
-					cout << "\x1b[92mВерный ответ!!!\x1b[0m" << endl;
+					cout << "\x1b[92mВерный ответ!!! +1 балл\x1b[0m" << endl;
 				}
 				else {
-					cout << "\x1b[91mНе верный ответ\x1b[0m" << endl;
+					cout << "\x1b[91mНе верный ответ!!! -1 жизнь\x1b[0m" << endl;
 					life--;
 					if (o4ko > 0) o4ko--;
 				}
@@ -209,10 +210,10 @@ int main() {
 
 				if (answer == 4) {
 					o4ko++;
-					cout << "\x1b[92mВерный ответ!!!\x1b[0m" << endl;
+					cout << "\x1b[92mВерный ответ!!! +1 балл\x1b[0m" << endl;
 				}
 				else {
-					cout << "\x1b[91mНе верный ответ\x1b[0m" << endl;
+					cout << "\x1b[91mНе верный ответ!!! -1 жизнь\x1b[0m" << endl;
 					life--;
 					if (o4ko > 0) o4ko--;
 				}
@@ -238,10 +239,10 @@ int main() {
 
 				if (answer == 2) {
 					o4ko++;
-					cout << "\x1b[92mВерный ответ!!!\x1b[0m" << endl;
+					cout << "\x1b[92mВерный ответ!!! +1 балл\x1b[0m" << endl;
 				}
 				else {
-					cout << "\x1b[91mНе верный ответ\x1b[0m" << endl;
+					cout << "\x1b[91mНе верный ответ!!! -1 жизнь\x1b[0m" << endl;
 					life--;
 					if (o4ko > 0) o4ko--;
 				}
@@ -267,10 +268,10 @@ int main() {
 
 				if (answer == 1) {
 					o4ko++;
-					cout << "\x1b[92mВерный ответ!!!\x1b[0m" << endl;
+					cout << "\x1b[92mВерный ответ!!! +1 балл\x1b[0m" << endl;
 				}
 				else {
-					cout << "\x1b[91mНе верный ответ\x1b[0m" << endl;
+					cout << "\x1b[91mНе верный ответ!!! -1 жизнь\x1b[0m" << endl;
 					life--;
 					if (o4ko > 0) o4ko--;
 				}
@@ -303,10 +304,10 @@ int main() {
 
 				if (answer == 3) {
 					o4ko++;
-					cout << "\x1b[92mВерный ответ!!!\x1b[0m" << endl;
+					cout << "\x1b[92mВерный ответ!!! +1 балл\x1b[0m" << endl;
 				}
 				else {
-					cout << "\x1b[91mНе верный ответ\x1b[0m" << endl;
+					cout << "\x1b[91mНе верный ответ!!! -1 жизнь\x1b[0m" << endl;
 					life--;
 					if (o4ko > 0) o4ko--;
 				}
@@ -332,7 +333,7 @@ int main() {
 
 				if (answer == 3) {
 					o4ko++;
-					cout << "\x1b[92mВерный ответ!!!\x1b[0m" << endl;
+					cout << "\x1b[92mВерный ответ!!! +1 балл\x1b[0m" << endl;
 				}
 				else {
 					cout << "\x1b[91mНе верный ответ\x1b[0m" << endl;
@@ -361,10 +362,10 @@ int main() {
 
 				if (answer == 2) {
 					o4ko++;
-					cout << "\x1b[92mВерный ответ!!!\x1b[0m" << endl;
+					cout << "\x1b[92mВерный ответ!!! +1 балл\x1b[0m" << endl;
 				}
 				else {
-					cout << "\x1b[91mНе верный ответ\x1b[0m" << endl;
+					cout << "\x1b[91mНе верный ответ!!! -1 жизнь\x1b[0m" << endl;
 					life--;
 					if (o4ko > 0) o4ko--;
 				}
@@ -390,10 +391,10 @@ int main() {
 
 				if (answer == 3) {
 					o4ko++;
-					cout << "\x1b[92mВерный ответ!!!\x1b[0m" << endl;
+					cout << "\x1b[92mВерный ответ!!! +1 балл\x1b[0m" << endl;
 				}
 				else {
-					cout << "\x1b[91mНе верный ответ\x1b[0m" << endl;
+					cout << "\x1b[91mНе верный ответ!!! -1 жизнь\x1b[0m" << endl;
 					life--;
 					if (o4ko > 0) o4ko--;
 				}
@@ -426,10 +427,10 @@ int main() {
 
 				if (answer == 3) {
 					o4ko++;
-					cout << "\x1b[92mВерный ответ!!!\x1b[0m" << endl;
+					cout << "\x1b[92mВерный ответ!!! +1 балл\x1b[0m" << endl;
 				}
 				else {
-					cout << "\x1b[91mНе верный ответ\x1b[0m" << endl;
+					cout << "\x1b[91mНе верный ответ!!! -1 жизнь\x1b[0m" << endl;
 					life--;
 					if (o4ko > 0) o4ko--;
 				}
@@ -455,10 +456,10 @@ int main() {
 
 				if (answer == 1) {
 					o4ko++;
-					cout << "\x1b[92mВерный ответ!!!\x1b[0m" << endl;
+					cout << "\x1b[92mВерный ответ!!! +1 балл\x1b[0m" << endl;
 				}
 				else {
-					cout << "\x1b[91mНе верный ответ\x1b[0m" << endl;
+					cout << "\x1b[91mНе верный ответ!!! -1 жизнь\x1b[0m" << endl;
 					life--;
 					if (o4ko > 0) o4ko--;
 				}
@@ -484,10 +485,10 @@ int main() {
 
 				if (answer == 3) {
 					o4ko++;
-					cout << "\x1b[92mВерный ответ!!!\x1b[0m" << endl;
+					cout << "\x1b[92mВерный ответ!!! +1 балл\x1b[0m" << endl;
 				}
 				else {
-					cout << "\x1b[91mНе верный ответ\x1b[0m" << endl;
+					cout << "\x1b[91mНе верный ответ!!! -1 жизнь\x1b[0m" << endl;
 					life--;
 					if (o4ko > 0) o4ko--;
 				}
@@ -503,26 +504,26 @@ int main() {
 				}
 
 				// Вопрос 12
-				cout << "12. Кто самый лучший куратор?" << endl;
-				cout << "[1] Кристина Алексадровна" << endl;
-				cout << "[2] Загадочная красотка из 402(Кристина Александровна)" << endl;
-				cout << "[3] Наша любимая Кристина Александровна" << endl;
-				cout << "[4] Никто,Кристина Александровна лучшая" << endl;
-				cout << "Выбрать ответ: ";                              
+				cout << "12.Что такое переменная?(самый сложный вопрос)  " << endl;
+				cout << "[1] Место для хранения данных" << endl;
+				cout << "[2] Комментарий в коде" << endl;
+				cout << "[3] Условия выполнения кода" << endl;
+				cout << "[4] Незнаю" << endl;
+				cout << "Выбрать ответ: ";
 				cin >> answer;
 
-				if (answer == 5) {
+				if (answer == 1) {
 					o4ko++;
-					cout << "\x1b[92mВерный ответ!!!\x1b[0m" << endl;
+					cout << "\x1b[92mВерный ответ!!! +1 балл\x1b[0m" << endl;
 				}
 				else {
-					cout << "\x1b[91mНе верный ответ:\x1b[0m \x1b[92mКристина Александровна = самый лучший куратор на свете\x1b[0m" << endl;
+					cout << "\x1b[91mНе верный ответ!!! -1 жизнь\x1b[0m" << endl;
 					life--;
 					if (o4ko > 0) o4ko--;
 				}
 				Sleep(2000);
 				system("cls");
-				cout << "Игра завершена!" << endl;
+				cout << "Поздравляем вы прошли игру!" << endl;
 				cout << "Ваш счет: " << o4ko << " из 12" << endl;
 				Sleep(3000);
 				return 0;
