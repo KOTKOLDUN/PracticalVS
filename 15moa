@@ -1,0 +1,70 @@
+#include <iostream>
+#include <vector>
+#include <ctime>
+
+using namespace std;
+
+int main() {
+    setlocale(LC_ALL, "Russian");
+
+    srand(time(NULL)); // запуск генератора случайных чисел
+
+    int length;
+    int useLetters, useDigits, useSpecials;
+
+    // Наборы символов (как строки)
+    vector<string> letters = {
+        "a","b","c","d","e","f","g","h","i","j",
+        "k","l","m","n","o","p","q","r","s","t",
+        "u","v","w","x","y","z"
+    };
+
+    vector<string> digits = {
+        "0","1","2","3","4","5","6","7","8","9"
+    };
+
+    vector<string> specials = {
+        "!","@","#","$","%"
+    };
+
+    vector<string> symbols;   // общий набор
+    vector<string> password;  // пароль
+
+    // Ввод настроек
+    cout << "Длина пароля: ";
+    cin >> length;
+
+    cout << "Включить буквы (1/0): ";
+    cin >> useLetters;
+
+    cout << "Включить цифры (1/0): ";
+    cin >> useDigits;
+
+    cout << "Включить спец. символы (1/0): ";
+    cin >> useSpecials;
+
+    // Формируем общий массив символов
+    if (useLetters == 1)
+        for (int i = 0; i < letters.size(); i++)
+            symbols.push_back(letters[i]);
+
+    if (useDigits == 1)
+        for (int i = 0; i < digits.size(); i++)
+            symbols.push_back(digits[i]);
+
+    if (useSpecials == 1)
+        for (int i = 0; i < specials.size(); i++)
+            symbols.push_back(specials[i]);
+
+    // Генерация пароля
+    for (int i = 0; i < length; i++) {
+        password.push_back(symbols[rand() % symbols.size()]);
+    }
+
+    // Вывод результата
+    cout << "Пароль: ";
+    for (int i = 0; i < password.size(); i++)
+        cout << password[i];
+
+    return 0;
+}
