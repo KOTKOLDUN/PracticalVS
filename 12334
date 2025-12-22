@@ -1,0 +1,57 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    double sum;
+    int from, to;
+
+    // Курсы валют
+    double USD = 90.0;
+    double EUR = 98.0;
+
+    cout << "Конвертер валют\n";
+    cout << "1 - RUB\n";
+    cout << "2 - USD\n";
+    cout << "3 - EUR\n\n";
+
+    cout << "Исходная валюта: ";
+    cin >> from;
+
+    cout << "Целевая валюта: ";
+    cin >> to;
+
+    cout << "Сумма: ";
+    cin >> sum;
+
+    // В рубли
+    double rub;
+
+    if (from == 1)
+        rub = sum;
+    else if (from == 2)
+        rub = sum * USD;
+    else if (from == 3)
+        rub = sum * EUR;
+    else {
+        cout << "Ошибка\n";
+        return 1;
+    }
+
+    // Из рублей
+    double res;
+
+    if (to == 1)
+        res = rub;
+    else if (to == 2)
+        res = rub / USD;
+    else if (to == 3)
+        res = rub / EUR;
+    else {
+        cout << "Ошибка\n";
+        return 1;
+    }
+
+    cout << "Результат: " << res << endl;
+
+    return 0;
+}
