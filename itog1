@@ -1,0 +1,61 @@
+#include <iostream>
+#include <windows.h>
+using namespace std;
+
+int main() {
+    setlocale(0, "");
+    double sum;
+    int ISH, VISH;
+
+    
+    double USD = 80.0;
+    double EUR = 94.0;
+
+    cout << "Конвертер валют\n";
+    cout << "1 - RUB\n";
+    cout << "2 - USD\n";
+    cout << "3 - EUR\n\n";
+
+    cout << "Выберете исходную валюту: ";
+    cin >> ISH;
+
+    cout << "Выберете валюту для конвертации: ";
+    cin >> VISH;
+
+    cout << "Сумма: ";
+    cin >> sum;
+
+    
+    double rub;
+
+    if (ISH == 1)
+        rub = sum;
+    else if (ISH == 2)
+        rub = sum * USD;
+    else if (ISH == 3)
+        rub = sum * EUR;
+    else {
+        cout << "Ошибка\n";
+        return 1;
+    }
+
+
+    
+    double res;
+
+    if (VISH == 1)
+        res = rub;
+    else if (VISH == 2)
+        res = rub / USD;
+    else if (VISH == 3)
+        res = rub / EUR;
+    else {
+        cout << "Ошибка\n";
+        return 1;
+    }
+    cout << "Процесс конвертации...." << endl;
+    Sleep(1000);
+    cout << "Результат: " << res << endl;
+
+    return 0;
+}
