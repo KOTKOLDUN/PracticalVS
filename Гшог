@@ -1,0 +1,22 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    double amount;
+    int choice;
+    
+    cout << "Сумма: ";
+    cin >> amount;
+    
+    cout << "1. USD->RUB\n2. RUB->USD\nВыбор: ";
+    cin >> choice;
+    
+    if (choice == 1) {
+        cout << amount << " USD = " << amount * 90.5 << " RUB";
+    }
+    else if (choice == 2) {
+        cout << amount << " RUB = " << amount / 90.5 << " USD";
+    }
+    
+    return 0;
+}
