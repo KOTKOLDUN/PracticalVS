@@ -1,0 +1,28 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+
+int main() {
+    srand(time(0));
+    
+    int dogs;
+    cout << "Сколько собак? ";
+    cin >> dogs;
+    
+    for(int i = 1; i <= dogs; i++) {
+        int times = rand() % 10 + 1;
+        cout << "Собака " << i << " гавкнула " << times << " раз";
+        
+        if(times % 10 == 1 && times % 100 != 11) 
+            cout << endl;
+        else if(times % 10 >= 2 && times % 10 <= 4 && 
+               !(times % 100 >= 12 && times % 100 <= 14))
+            cout << "а" << endl;
+        else
+            cout << "" << endl;
+    }
+    
+    return 0;
+}
