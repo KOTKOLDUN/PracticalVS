@@ -1,7 +1,8 @@
 #include <iostream>
+#include <windows.h>
 using namespace std;
 
-// Функции для отображения результатов
+
 void ShowSum(int a, int b) {
     cout << "[+] сумма = " << a + b << endl;
 }
@@ -17,61 +18,64 @@ void ShowMulti(int a, int b) {
 void ShowQuo(int a, int b) {
     if (b != 0) {
         cout << "[/] частное = " << (double)a / b << endl;
-    } else {
+    }
+    else {
         cout << "Ошибка: деление на ноль!" << endl;
     }
 }
 
-// Функция для отображения меню
+
 void showMenu() {
-    cout << "==============================" << endl;
+    setlocale(0, "");
     cout << "          Калькулятор         " << endl;
-    cout << "==============================" << endl;
-    cout << "[1] Сложить." << endl;
-    cout << "[2] Вычесть." << endl;
-    cout << "[3] Умножить." << endl;
-    cout << "[4] Разделить." << endl;
-    cout << "[5] Выход." << endl;
-    cout << "==============================" << endl;
+    cout << "[1] Сложить" << endl;
+    cout << "[2] Вычесть" << endl;
+    cout << "[3] Умножить" << endl;
+    cout << "[4] Разделить" << endl;
+    cout << "[5] Выход" << endl << endl;
     cout << "Выберите операцию: ";
 }
 
 int main() {
+  
     int choice;
     int num1, num2;
-    
+
     do {
         showMenu();
         cin >> choice;
-        
+
         if (choice >= 1 && choice <= 4) {
-            cout << "[1] Число: ";
+            cout << "[1] Чиселко: ";
             cin >> num1;
-            cout << "[2] Число: ";
+            cout << "[2] Чиселко: ";
             cin >> num2;
             cout << endl;
+            system("cls");
             
-            // Используем if-else вместо switch
             if (choice == 1) {
                 ShowSum(num1, num2);
-            } 
+            }
             else if (choice == 2) {
                 ShowDif(num1, num2);
-            } 
+            }
             else if (choice == 3) {
                 ShowMulti(num1, num2);
-            } 
+            }
             else if (choice == 4) {
                 ShowQuo(num1, num2);
             }
             
             cout << endl;
-        } else if (choice != 5) {
+            system("pause");
+            system("cls");
+        }
+        else if (choice != 5) {
             cout << "Неверный выбор! Попробуйте снова." << endl << endl;
         }
-        
+
     } while (choice != 5);
-    
+
     cout << "Программа завершена." << endl;
     return 0;
 }
