@@ -1,0 +1,53 @@
+using System;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // 1. Целые числа
+        int intNum = 10;
+        byte byteNum = 200;
+        short shortNum = 30000;
+        long longNum = 1000000;
+
+        // Изменение значений
+        intNum = 20;
+        byteNum = 150;
+        shortNum = 25000;
+        longNum = 2000000;
+
+        // 2. Числа с точкой
+        float floatNum = 12.5f;
+        double doubleNum = 1234.5678d;
+
+        // Изменение значений
+        floatNum = 25.75f;
+        doubleNum = 9876.54321d;
+
+        // 3. Строка и символ
+        string text = "Hello Unity";
+        char symbol = 'U';
+
+        // Изменение значений
+        text = "Learning C#";
+        symbol = 'C';
+
+        // 4. Булево значение
+        bool isHappy = false;
+        isHappy = true;
+
+        // Вывод всех переменных в консоль
+        Console.WriteLine("int: " + intNum);
+        Console.WriteLine("byte: " + byteNum);
+        Console.WriteLine("short: " + shortNum);
+        Console.WriteLine("long: " + longNum);
+
+        Console.WriteLine("float: " + floatNum);
+        Console.WriteLine("double: " + doubleNum);
+
+        Console.WriteLine("string: " + text);
+        Console.WriteLine("char: " + symbol);
+
+        Console.WriteLine("bool: " + isHappy);
+    }
+}
