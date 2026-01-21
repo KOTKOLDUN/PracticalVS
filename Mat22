@@ -1,0 +1,39 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("Решение уравнения: x = (A² + B² - 4AC) * Z / 2");
+        Console.WriteLine();
+
+        // Ввод значений от пользователя
+        Console.Write("Введите значение A: ");
+        double A = Convert.ToDouble(Console.ReadLine());
+
+        Console.Write("Введите значение B: ");
+        double B = Convert.ToDouble(Console.ReadLine());
+
+        Console.Write("Введите значение C: ");
+        double C = Convert.ToDouble(Console.ReadLine());
+
+        Console.Write("Введите значение Z: ");
+        double Z = Convert.ToDouble(Console.ReadLine());
+
+        // Вычисление уравнения
+        double x = (Math.Pow(A, 2) + Math.Pow(B, 2) - 4 * A * C) * Z / 2;
+
+        // Вывод результата
+        Console.WriteLine();
+        Console.WriteLine($"Результат вычисления: x = {x:F4}");
+        Console.WriteLine($"Развернутая формула: ({A}² + {B}² - 4×{A}×{C}) × {Z} / 2 = {x:F4}");
+
+        // Если нужно, можно использовать сокращенные операции:
+        // double result = 0;
+        // result += Math.Pow(A, 2); // сокращенная операция сложения
+        // result += Math.Pow(B, 2);
+        // result -= 4 * A * C;
+        // result *= Z;
+        // result /= 2;
+    }
+}
