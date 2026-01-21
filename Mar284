@@ -1,0 +1,141 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("=== Сравнение двух чисел ===");
+        
+        // Ввод первого числа
+        Console.Write("Введите первое число: ");
+        double num1 = Convert.ToDouble(Console.ReadLine());
+        
+        // Ввод второго числа
+        Console.Write("Введите второе число: ");
+        double num2 = Convert.ToDouble(Console.ReadLine());
+        
+        Console.WriteLine();
+        
+        // Сравнение чисел
+        if (num1 == num2)
+        {
+            Console.WriteLine("Числа " + num1 + " и " + num2 + " равны.");
+        }
+        else if (num1 > num2)
+        {
+            Console.WriteLine("Число " + num1 + " больше числа " + num2 + ".");
+        }
+        else
+        {
+            Console.WriteLine("Число " + num1 + " меньше числа " + num2 + ".");
+        }
+    }
+}
+
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("=== Расчет суммы вклада с процентами ===");
+        
+        // Ввод суммы вклада
+        Console.Write("Введите сумму вклада: ");
+        double deposit = Convert.ToDouble(Console.ReadLine());
+        
+        double interestRate; // процентная ставка
+        double interestAmount; // сумма процентов
+        double totalAmount; // итоговая сумма
+        
+        // Определение процентной ставки
+        if (deposit < 100)
+        {
+            interestRate = 5;
+        }
+        else if (deposit >= 100 && deposit <= 200)
+        {
+            interestRate = 7;
+        }
+        else
+        {
+            interestRate = 10;
+        }
+        
+        // Расчет процентов и итоговой суммы
+        interestAmount = deposit * interestRate / 100;
+        totalAmount = deposit + interestAmount;
+        
+        // Вывод результатов
+        Console.WriteLine();
+        Console.WriteLine("Сумма вклада: " + deposit.ToString("F2"));
+        Console.WriteLine("Процентная ставка: " + interestRate + "%");
+        Console.WriteLine("Сумма процентов: " + interestAmount.ToString("F2"));
+        Console.WriteLine("Итоговая сумма: " + totalAmount.ToString("F2"));
+    }
+}
+
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("=== Простой калькулятор ===");
+        
+        // Ввод первого числа
+        Console.Write("Введите первое число: ");
+        double num1 = Convert.ToDouble(Console.ReadLine());
+        
+        // Ввод второго числа
+        Console.Write("Введите второе число: ");
+        double num2 = Convert.ToDouble(Console.ReadLine());
+        
+        // Выбор операции
+        Console.WriteLine();
+        Console.WriteLine("Выберите операцию:");
+        Console.WriteLine("1 - Сложение (+)");
+        Console.WriteLine("2 - Вычитание (-)");
+        Console.WriteLine("3 - Умножение (*)");
+        Console.WriteLine("4 - Деление (/)");
+        Console.Write("Введите номер операции: ");
+        
+        int operation = Convert.ToInt32(Console.ReadLine());
+        double result = 0;
+        
+        // Выполнение операции с проверкой деления на ноль
+        if (operation == 1)
+        {
+            result = num1 + num2;
+            Console.WriteLine("Результат: " + num1 + " + " + num2 + " = " + result);
+        }
+        else if (operation == 2)
+        {
+            result = num1 - num2;
+            Console.WriteLine("Результат: " + num1 + " - " + num2 + " = " + result);
+        }
+        else if (operation == 3)
+        {
+            result = num1 * num2;
+            Console.WriteLine("Результат: " + num1 + " * " + num2 + " = " + result);
+        }
+        else if (operation == 4)
+        {
+            if (num2 != 0)
+            {
+                result = num1 / num2;
+                Console.WriteLine("Результат: " + num1 + " / " + num2 + " = " + result.ToString("F4"));
+            }
+            else
+            {
+                Console.WriteLine("Ошибка: деление на ноль невозможно!");
+                return;
+            }
+        }
+        else
+        {
+            Console.WriteLine("Ошибка: выбрана неверная операция!");
+            return;
+        }
+    }
+}
