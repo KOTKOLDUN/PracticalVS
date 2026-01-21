@@ -1,0 +1,49 @@
+using System;
+
+namespace QuadraticEquationSolver
+{
+    class Program
+    {
+        static void Main()
+        {
+            Console.WriteLine("Решение квадратного уравнения ax^2 + bx + c = 0");
+            Console.WriteLine("Введите коэффициент a:");
+            double a = Convert.ToDouble(Console.ReadLine());
+            
+            Console.WriteLine("Введите коэффициент b:");
+            double b = Convert.ToDouble(Console.ReadLine());
+            
+            Console.WriteLine("Введите коэффициент c:");
+            double c = Convert.ToDouble(Console.ReadLine());
+            
+            // Вычисление дискриминанта
+            double discriminant = Math.Pow(b, 2) - 4 * a * c;
+            Console.WriteLine($"Дискриминант D = {discriminant:F4}");
+            
+            if (discriminant > 0)
+            {
+                // Два различных корня
+                double x1 = (-b + Math.Sqrt(discriminant)) / (2 * a);
+                double x2 = (-b - Math.Sqrt(discriminant)) / (2 * a);
+                Console.WriteLine($"Уравнение имеет два корня:");
+                Console.WriteLine($"x1 = {x1:F4}");
+                Console.WriteLine($"x2 = {x2:F4}");
+            }
+            else if (discriminant == 0)
+            {
+                // Один корень (два совпадающих)
+                double x = -b / (2 * a);
+                Console.WriteLine($"Уравнение имеет один корень (кратности 2):");
+                Console.WriteLine($"x = {x:F4}");
+            }
+            else
+            {
+                // Нет действительных корней
+                Console.WriteLine("Уравнение не имеет действительных корней (D < 0)");
+            }
+            
+            Console.WriteLine("\nНажмите любую клавишу для выхода...");
+            Console.ReadKey();
+        }
+    }
+}
