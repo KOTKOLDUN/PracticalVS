@@ -1,0 +1,88 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("=== РАСПИСАНИЕ НА НЕДЕЛЮ ===");
+        Console.WriteLine("1 - Понедельник");
+        Console.WriteLine("2 - Вторник");
+        Console.WriteLine("3 - Среда");
+        Console.WriteLine("4 - Четверг");
+        Console.WriteLine("5 - Пятница");
+        Console.WriteLine("6 - Суббота");
+        Console.WriteLine("7 - Воскресенье");
+        Console.WriteLine();
+        Console.Write("Введите номер дня недели (1-7): ");
+        
+        int dayNumber = Convert.ToInt32(Console.ReadLine());
+        
+        Console.WriteLine();
+        
+        switch (dayNumber)
+        {
+            case 1:
+                Console.WriteLine("ПОНЕДЕЛЬНИК:");
+                Console.WriteLine("09:00 - 10:30 - Математика");
+                Console.WriteLine("11:00 - 12:30 - Физика");
+                Console.WriteLine("14:00 - 15:30 - Программирование");
+                Console.WriteLine("16:00 - 17:30 - Английский язык");
+                break;
+                
+            case 2:
+                Console.WriteLine("ВТОРНИК:");
+                Console.WriteLine("09:00 - 10:30 - Химия");
+                Console.WriteLine("11:00 - 12:30 - Биология");
+                Console.WriteLine("14:00 - 15:30 - Физкультура");
+                Console.WriteLine("16:00 - 17:30 - Самостоятельная работа");
+                break;
+                
+            case 3:
+                Console.WriteLine("СРЕДА:");
+                Console.WriteLine("09:00 - 10:30 - История");
+                Console.WriteLine("11:00 - 12:30 - Литература");
+                Console.WriteLine("14:00 - 15:30 - Программирование (лабораторная)");
+                Console.WriteLine("16:00 - 17:30 - Проектная работа");
+                break;
+                
+            case 4:
+                Console.WriteLine("ЧЕТВЕРГ:");
+                Console.WriteLine("09:00 - 10:30 - Математика");
+                Console.WriteLine("11:00 - 12:30 - Физика (лабораторная)");
+                Console.WriteLine("14:00 - 15:30 - Экономика");
+                Console.WriteLine("16:00 - 17:30 - Английский язык (разговорный клуб)");
+                break;
+                
+            case 5:
+                Console.WriteLine("ПЯТНИЦА:");
+                Console.WriteLine("09:00 - 10:30 - Программирование");
+                Console.WriteLine("11:00 - 12:30 - Алгоритмы и структуры данных");
+                Console.WriteLine("14:00 - 15:30 - Физкультура");
+                Console.WriteLine("16:00 - 17:30 - Консультация с преподавателем");
+                break;
+                
+            case 6:
+                Console.WriteLine("СУББОТА:");
+                Console.WriteLine("10:00 - 12:00 - Уборка и домашние дела");
+                Console.WriteLine("13:00 - 15:00 - Отдых и хобби");
+                Console.WriteLine("16:00 - 18:00 - Встреча с друзьями");
+                Console.WriteLine("19:00 - 21:00 - Кино или чтение");
+                break;
+                
+            case 7:
+                Console.WriteLine("ВОСКРЕСЕНЬЕ:");
+                Console.WriteLine("11:00 - 13:00 - Подготовка к следующей неделе");
+                Console.WriteLine("14:00 - 16:00 - Прогулка на свежем воздухе");
+                Console.WriteLine("17:00 - 19:00 - Семейное время");
+                Console.WriteLine("Вечер - Отдых и ранний сон");
+                break;
+                
+            default:
+                Console.WriteLine("Ошибка! Введите число от 1 до 7.");
+                break;
+        }
+        
+        Console.WriteLine();
+        Console.WriteLine("Хорошего дня!");
+    }
+}
