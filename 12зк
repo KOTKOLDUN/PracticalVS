@@ -15,7 +15,7 @@ int main() {
 	short setting;  //Выбор настроек
 	string UserName = "Игрок";  // Имя пользователя
 	short num = 12;  // кол-во вопросов
-	short color;  // Цвет интерфейса
+	short col;  // Цвет интерфейса
 	short answer;// ответ на вопрос
 
 
@@ -114,18 +114,46 @@ int main() {
 
 			case 3:
 
-				cout << "Какой цвет хочешь? " << endl << "[1]Зеленый, [2]Белый : ";
-				cin >> color;
+				cout << "Какой цвет хочешь? " << endl;
+				cout << "[1] BLUE: " << endl;
+				cout << "[2] GREEN: " << endl;
+				cout << "[3] GAY: " << endl;
+				cout << "[4] RED: " << endl;
+				cout << "[5] PURPLE: " << endl;
+				cout << "[6] YELLOW: " << endl;
+				cout << "[7] WHITE: " << endl;
+				cout << "[] Выберете цвет: ";
+				cin >> col;
 
-				if (color == 1) {
+				if (col == 1) {
 					system("color 1");
-					cout << "Цвет изменен на лиловый" << endl;
+					cout << "Цвет изменен!" << endl;
 				}
-				else if (color == 2) {
+				else if (col == 2) {
+					system("color 2");
+					cout << "Цвет изменен!" << endl;
+				}
+				else if (col == 3) {
+					system("color 3");
+					cout << "Цвет изменен!" << endl;
+				}
+				else if (col == 4) {
+					system("color 4");
+					cout << "Цвет изменен!" << endl;
+				}
+				else if (col == 5) {
+					system("color 5");
+					cout << "Цвет изменен!" << endl;
+				}
+				else if (col == 6) {
+					system("color 6");
+					cout << "Цвет изменен!" << endl;
+				}
+				else if (col == 7) {
 					system("color 7");
-					cout << "Цвет изменен на белый" << endl;
+					cout << "Цвет изменен!" << endl;
 				}
-				Sleep(1000);
+				Sleep(2000);
 				break;
 
 			case 0:
@@ -189,6 +217,7 @@ int main() {
 					if (o4ko > 0) o4ko--;
 				}
 				Sleep(2000);
+				system("color [col]");
 				system("cls");
 				cout << "Игрок: " << UserName << "  жизни: " << life << "  очки: " << o4ko << endl << endl;
 
