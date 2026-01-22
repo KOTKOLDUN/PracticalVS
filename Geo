@@ -1,0 +1,49 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    cout << "[+] Программа - \"Геометрические фигуры\"" << endl;
+    cout << "[1] Линия" << endl;
+    
+    int choice;
+    cout << "[+] Выберите фигуру: ";
+    cin >> choice;
+    
+    if (choice == 1) {
+        cout << "[+] Фигура: \"Линия\"" << endl;
+        cout << "[1] Горизонтальная" << endl;
+        cout << "[2] Вертикальная" << endl;
+        
+        int type;
+        cout << "[+] Выберите тип: ";
+        cin >> type;
+        
+        int length;
+        cout << "[+] Длина линии: ";
+        cin >> length;
+        
+        char texture;
+        cout << "[+] Текстура линии: ";
+        cin >> texture;
+        
+        cout << "[+] Результат:" << endl;
+        
+        if (type == 1) {
+            // Горизонтальная линия с for
+            for (int i = 0; i < length; i++) {
+                cout << texture;
+            }
+        } else if (type == 2) {
+            // Вертикальная линия с for
+            for (int i = 0; i < length; i++) {
+                cout << texture << endl;
+            }
+        } else {
+            cout << "Ошибка: неверный тип!" << endl;
+        }
+    } else {
+        cout << "Ошибка: неверный выбор!" << endl;
+    }
+    
+    return 0;
+}
