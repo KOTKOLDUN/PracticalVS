@@ -1,0 +1,42 @@
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        List<int> myNumbers = new List<int>() { 1, 2, 3, 4, 5 };
+
+        // 1. Добавление элемента в конец
+        myNumbers.Add(10);
+
+        // 2. Добавление элемента в начало
+        myNumbers.Insert(0, 20);
+
+        // 3. Добавление элемента в позицию 4
+        myNumbers.Insert(4, 30);
+
+        // 4. Удаление элемента с конца
+        myNumbers.RemoveAt(myNumbers.Count - 1);
+
+        // 5. Удаление элемента с начала
+        myNumbers.RemoveAt(0);
+
+        // 6. Удаление элемента с позиции 5
+        myNumbers.RemoveAt(5);
+
+        // 7. Создание массива из двух массивов
+        List<int> array1 = new List<int>() { 1, 2, 3 };
+        List<int> array2 = new List<int>() { 4, 5, 6 };
+
+        List<int> resultArray = new List<int>();
+        resultArray.AddRange(array1);
+        resultArray.AddRange(array2);
+
+        // Вывод результата
+        foreach (int i in resultArray)
+        {
+            Console.Write(i + " ");
+        }
+    }
+}
