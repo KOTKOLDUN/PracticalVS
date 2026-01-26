@@ -1,0 +1,63 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.Write("Введите натуральное число: ");
+        int n = int.Parse(Console.ReadLine());
+
+        int temp = n;
+        int count = 0;
+        int sum = 0;
+        int product = 1;
+        int sumSquares = 0;
+        int sumCubes = 0;
+
+        while (temp > 0)
+        {
+            int digit = temp % 10;
+
+            count++;
+            sum += digit;
+            product *= digit;
+            sumSquares += digit * digit;
+            sumCubes += digit * digit * digit;
+
+            temp /= 10;
+        }
+
+        int lastDigit = n % 10;
+
+        int firstDigit = n;
+        while (firstDigit >= 10)
+        {
+            firstDigit /= 10;
+        }
+
+        double average = (double)sum / count;
+
+        Console.WriteLine("\nРезультаты:");
+        Console.WriteLine($"Количество цифр: {count}");
+        Console.WriteLine($"Сумма цифр: {sum}");
+        Console.WriteLine($"Произведение цифр: {product}");
+        Console.WriteLine($"Среднее арифметическое: {average}");
+        Console.WriteLine($"Сумма квадратов цифр: {sumSquares}");
+        Console.WriteLine($"Сумма кубов цифр: {sumCubes}");
+        Console.WriteLine($"Первая цифра: {firstDigit}");
+        Console.WriteLine($"Сумма первой и последней цифры: {firstDigit + lastDigit}");
+
+        // ✅ Задание 2
+        int max = 0;
+        int i = 1;
+        while (i <= 5000)
+        {
+            if (i % 39 == 0)
+                max = i;
+            i++;
+        }
+
+        Console.WriteLine("\nЗадание 2:");
+        Console.WriteLine($"Максимальное число ≤ 5000, делящееся на 39: {max}");
+    }
+}
