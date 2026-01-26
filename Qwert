@@ -1,0 +1,48 @@
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        List<int> a = new List<int>() { 1, 2, 3, 4, 5 };
+        int choice;
+
+        do
+        {
+            Console.Clear();
+            Console.WriteLine("Массив:");
+            foreach (int x in a)
+                Console.Write(x + " ");
+
+            Console.WriteLine("\n\n1 - Добавить в конец");
+            Console.WriteLine("2 - Добавить в начало");
+            Console.WriteLine("3 - Удалить с конца");
+            Console.WriteLine("4 - Удалить с начала");
+            Console.WriteLine("0 - Выход");
+
+            Console.Write("\nВыбор: ");
+            choice = int.Parse(Console.ReadLine());
+
+            if (choice == 1)
+            {
+                Console.Write("Введите число: ");
+                a.Add(int.Parse(Console.ReadLine()));
+            }
+            else if (choice == 2)
+            {
+                Console.Write("Введите число: ");
+                a.Insert(0, int.Parse(Console.ReadLine()));
+            }
+            else if (choice == 3 && a.Count > 0)
+            {
+                a.RemoveAt(a.Count - 1);
+            }
+            else if (choice == 4 && a.Count > 0)
+            {
+                a.RemoveAt(0);
+            }
+
+        } while (choice != 0);
+    }
+}
