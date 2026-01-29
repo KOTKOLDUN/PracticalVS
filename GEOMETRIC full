@@ -1,0 +1,359 @@
+#include <iostream>
+using namespace std;
+
+
+int main() {
+
+	setlocale(0, "");
+
+	int  a;//выбор фигуры
+	int b;//выбор внутриности фигуры
+	int MapSize;
+	char texture;
+	int MapSize2;
+	bool f = false;
+	int kol = 0;
+
+	cout << "Геометрические фигуры" << endl;
+	cout << "[1]Линия" << endl;
+	cout << "[2]Квадрат" << endl;
+	cout << "[3]Прямоугольник" << endl;
+	cout << "[4]Треугольник" << endl;
+	cout << "[5]Решетка" << endl;
+	cout << "[6]Крестик" << endl;
+	cout << "[7]Плюс" << endl;
+	cout << "[8]Ромб" << endl;
+	cout << "[9]Змейка" << endl;
+	cout << "[10]Рекурсивный квадрат" << endl;
+	cout << "Выберите:";
+	cin >> a;
+
+	switch (a) {
+
+		//линия
+	case 1:
+
+		system("cls");
+
+		cout << "напишите размер: ";
+		cin >> MapSize;
+
+		cout << "Напишите текстуру:";
+		cin >> texture;
+
+		system("cls");
+
+		for (int x = 0; x < MapSize; x++) {
+			cout << texture;
+		}
+		break;
+
+		//квадрат
+	case 2:
+
+		system("cls");
+
+		cout << "[1]Заполненный" << endl;
+		cout << "[2]Пустой" << endl;
+		cout << "Выберите: ";
+		cin >> b;
+
+		cout << "напишите размер: ";
+		cin >> MapSize;
+
+		cout << "Напишите текстуру:";
+		cin >> texture;
+
+		system("cls");
+
+		//Заполненый
+		if (b == 1) {
+			for (int y = 0; y < MapSize; y++) {
+
+				for (int x = 0; x < MapSize; x++) {
+					cout << texture << " ";
+				}
+				cout << endl;
+			}
+			return 0;
+		}
+		//Пустой
+		else(b == 2); {
+			for (int y = 0; y < MapSize; y++) {
+				for (int x = 0; x < MapSize; x++) {
+					if (x == 0 || y == 0 || y == MapSize - 1 || x == MapSize - 1) {
+						cout << texture << " ";
+					}
+					else {
+						cout << " ";
+					}
+				}
+				cout << endl;
+			}
+		}
+		break;
+
+
+		//прямоугольник
+	case 3:
+
+		system("cls");
+
+		cout << "[1]Заполненый" << endl;
+		cout << "[2]Пустой" << endl;
+		cout << "Выберите: ";
+		cin >> b;
+
+
+		cout << "Введите длину: ";
+		cin >> MapSize;
+
+		cout << "Введите высоту: ";
+		cin >> MapSize2;
+
+		cout << "Введите текстуру: ";
+		cin >> texture;
+
+
+		system("cls");
+
+
+		//заполненый
+		if (b == 1) {
+
+			for (int y = 0; y < MapSize2; y++) {
+				for (int x = 0; x < MapSize; x++) {
+					cout << texture << " ";
+				}
+				cout << endl;
+			}
+			return 0;
+		}
+
+		//пустой
+		else(b == 2); {
+			for (int y = 0; y < MapSize2; y++) {
+				for (int x = 0; x < MapSize; x++) {
+					if (x == 0 || y == 0 || y == MapSize2 - 1 || x == MapSize - 1) {
+						cout << texture << " ";
+					}
+					else {
+						cout << ". ";
+					}
+				}
+				cout << endl;
+			}
+		}
+		break;
+
+		//Треугольник
+	case 4:
+
+		system("cls");
+
+		cout << "[1]Заполненный" << endl;
+		cout << "[2]Пустой" << endl;
+		cout << "Выберите: ";
+		cin >> b;
+
+		cout << "напишите размер: ";
+		cin >> MapSize;
+
+		cout << "Напишите текстуру:";
+		cin >> texture;
+
+		system("cls");
+
+
+		//заполненый
+		if (b == 1) {
+			for (int y = 1; y < MapSize; y++) {
+
+				for (int x = 0; x < MapSize - y; x++) {
+					cout << " ";
+				}
+
+				for (int x = 1; x <= y; x++) {
+					cout << texture << " ";
+				}
+				cout << endl;
+			}
+			return 0;
+		}
+
+		//Пустой
+		else(b == 2); {
+
+			for (int y = 0; y < MapSize; y++) {
+				for (int x = 0; x < MapSize; x++) {
+					if (x == MapSize / 2 + y || x == MapSize / 2 - y || y == MapSize / 2) {
+						cout << texture << " ";
+					}
+					else {
+						cout << " .";
+					}
+				}
+				cout << endl;
+			}
+		}
+		break;
+
+		//решетка
+	case 5:
+
+		system("cls");
+
+		cout << "Размер: ";
+		cin >> MapSize;
+
+		cout << "Текстура: ";
+		cin >> texture;
+
+		system("cls");
+
+		for (int y = 0; y < MapSize; y++) {
+			for (int x = 0; x < MapSize; x++) {
+				if (x % 2 != 0 || y % 2 != 0) {
+					cout << texture << " ";
+				}
+				else {
+					cout << ". ";
+				}
+			}
+			cout << endl;
+		}
+
+		break;
+
+		//Крестик
+	case 6:
+		system("cls");
+
+		cout << "Размер: ";
+		cin >> MapSize;
+
+		cout << "Тексура: ";
+		cin >> texture;
+
+		system("cls");
+
+		for (int y = 0; y < MapSize; y++) {
+			for (int x = 0; x < MapSize; x++) {
+				if (x == y || y == MapSize - x - 1) {
+					cout << texture << " ";
+				}
+				else {
+					cout << ". ";
+				}
+			}
+			cout << endl;
+		}
+
+		break;
+
+		//Плюс
+	case 7:
+		system("cls");
+
+		cout << "Размер: ";
+		cin >> MapSize;
+
+		cout << "Тексура: ";
+		cin >> texture;
+
+		system("cls");
+
+		for (int y = 0; y < MapSize; y++) {
+			for (int x = 0; x < MapSize; x++) {
+				if (x == MapSize / 2 || y == MapSize / 2) {
+					cout << texture << " ";
+				}
+				else {
+					cout << ". ";
+				}
+			}
+			cout << endl;
+		}
+		break;
+
+	case 8:  //Ромб
+		cout << "Размер: ";
+		cin >> MapSize;
+
+		cout << "Тексура: ";
+		cin >> texture;
+
+		system("cls");
+
+		for (int y = 0; y < MapSize; y++) {
+			for (int x = 0; x < MapSize; x++) {
+				if (x == y + MapSize / 2 || x == y - MapSize / 2 || y == MapSize / 2 + MapSize - x - 1 || x == MapSize / 2 - y) {
+					cout << texture << " ";
+				}
+				else {
+					cout << ". ";
+				}
+			}
+			cout << endl;
+		}
+		break;
+
+	case 9: //змейка
+
+		cout << "Размер: ";
+		cin >> MapSize;
+
+		cout << "Тексура: ";
+		cin >> texture;
+
+		system("cls");
+
+		for (int y = 0; y < MapSize; y++) {
+			for (int x = 0; x < MapSize; x++) {
+				if (y % 2 == 0) {
+					cout << texture << " ";
+				}
+
+				else if (f == false && x == MapSize - 1) {
+					cout << texture << " ";
+
+				}
+				else if (f == true && x == 0) {
+					cout << texture << " ";
+
+				}
+				else {
+					cout << ". ";
+				}
+				if (y != 0 && y % 2 == 0) {
+					f = !f;
+				}
+			}
+		}
+			cout << endl;
+
+	case 10://рекурс. квадрат
+		cout << "Размер: ";
+		cin >> MapSize;
+
+		cout << "Тексура: ";
+		cin >> texture;
+
+		
+		for (int y = 0; y < MapSize; y++) {
+			for (int x = 0; x < MapSize; x++) {
+				if (y == 0 ) {
+					cout << texture << " ";
+				}
+				else {
+					cout << " .";
+				}
+			}
+			cout << endl;
+		}
+		break;
+		
+	}
+
+	int _; cin >> _;
+}
