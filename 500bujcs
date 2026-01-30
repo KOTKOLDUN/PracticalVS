@@ -1,0 +1,28 @@
+using System;
+using System.IO;
+
+namespace myProject
+{
+    class Program
+    {
+        static void Main()
+        {
+            Console.WriteLine("Введите текст: ");
+            string text = Console.ReadLine();
+            
+            using (FileStream stream = new FileStream("info.txt", FileMode.OpenOrCreate))
+            {
+                byte[] array = System.Text.Encoding.Default.GetBytes(text);
+                stream.Write(array, 0, array.Length);
+            }
+            
+            using (FileStream readFile = File.OpenRead("info.txt"))
+            {
+                byte[] array2 = new byte[readFile.Length];
+                readFile.Read(array2, 0, array2.Length);
+                string textFromFile = System.Text.Encoding.Default.GetString(array2);
+                Console.WriteLine(textFromFile);
+            }
+        }
+    }
+}
