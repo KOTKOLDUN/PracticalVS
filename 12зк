@@ -7,9 +7,10 @@ int main() {
 
 	setlocale(0, "");
 
-
+	string color = "\x1b[0m";
+	string color_reset = "\x1b[0m";
 	short select;  //выбрать пункт меню
-	short exit;  //выход из пунктов меню (правила, настройки, начать игру)
+	short exit;  //выход из пунктов меню
 	short life = 3;  // жизни игрока
 	short o4ko = 0;  // кол-во верных ответов
 	short setting;  //Выбор настроек
@@ -66,7 +67,7 @@ int main() {
 
 				cout << "Приветствуем вас!" << endl;
 				cout << "Меню:" << endl;
-				cout << "[1] Начать игру" << endl;
+				cout << color << "[1]" << color_reset << "Начать игру" << endl;
 				cout << "[2] Настройки" << endl;
 				cout << "[3] Правила" << endl;
 				cout << "[0] Выйти" << endl;
@@ -75,7 +76,7 @@ int main() {
 			}
 
 			break;
-
+			
 
 
 		case 2:  //настройки
@@ -115,45 +116,45 @@ int main() {
 			case 3:
 
 				cout << "Какой цвет хочешь? " << endl;
-				cout << "[1] BLUE: " << endl;
-				cout << "[2] GREEN: " << endl;
-				cout << "[3] GAY: " << endl;
-				cout << "[4] RED: " << endl;
-				cout << "[5] PURPLE: " << endl;
-				cout << "[6] YELLOW: " << endl;
-				cout << "[7] WHITE: " << endl;
+				cout << "[1] Серый: " << endl;
+				cout << "[2] Красный: " << endl;
+				cout << "[3] Зеленый: " << endl;
+				cout << "[4] Желтый: " << endl;
+				cout << "[5] Синий: " << endl;
+				cout << "[6] Фиолетовый: " << endl;
+				cout << "[7] Гей: " << endl;
+				cout << "[8] Белый: " << endl;
 				cout << "[] Выберете цвет: ";
 				cin >> col;
 
 				if (col == 1) {
-					system("color 1");
-					cout << "Цвет изменен!" << endl;
+					color = "\x1b[90m";
 				}
 				else if (col == 2) {
-					system("color 2");
-					cout << "Цвет изменен!" << endl;
+					color = "\x1b[91m";
 				}
 				else if (col == 3) {
-					system("color 3");
-					cout << "Цвет изменен!" << endl;
+					color = "\x1b[92m";
 				}
 				else if (col == 4) {
-					system("color 4");
-					cout << "Цвет изменен!" << endl;
+					color = "\x1b[93m";
 				}
 				else if (col == 5) {
-					system("color 5");
-					cout << "Цвет изменен!" << endl;
+					color = "\x1b[94m";
 				}
 				else if (col == 6) {
-					system("color 6");
-					cout << "Цвет изменен!" << endl;
+					color = "\x1b[95m";
 				}
 				else if (col == 7) {
-					system("color 7");
-					cout << "Цвет изменен!" << endl;
+					color = "\x1b[96m";
 				}
-				Sleep(2000); 
+				else if (col == 8) {
+					color = "\x1b[97m";
+				}
+				
+				
+
+
 				break;
 
 			case 0:
@@ -179,11 +180,11 @@ int main() {
 			system("cls");
 			cout << "Приветствуем вас!" << endl;
 			cout << "Меню:" << endl;
-			cout << "[1] Начать игру" << endl;
-			cout << "[2] Настройки" << endl;
-			cout << "[3] Правила" << endl;
-			cout << "[0] Выйти" << endl << endl;
-			cout << "[/]Выберите пункт: ";
+			cout << color << "[1]" << color_reset << "Начать игру" << endl;
+			cout << color << "[2]" << color_reset << "Настройки" << endl;
+			cout << color << "[3]" << color_reset << "Првила" << endl;
+			cout << color << "[0]" << color_reset << "Выход" << endl << endl;
+			cout << color << "[/]" << color_reset << "Выберете пункт:" << endl;
 			cin >> select;
 			break;
 
@@ -199,11 +200,11 @@ int main() {
 				cout << "Игрок: " << UserName << "  жизни: " << life << "  очки: " << o4ko << endl << endl;
 
 				// Вопрос 1
-				cout << "1. Что такое HTTP?" << endl;
-				cout << "[1] Язык разметки" << endl;
-				cout << "[2] Протокол передачи гипертекста" << endl;
-				cout << "[3] Среда разработки" << endl;
-				cout << "[4] Тип базы данных" << endl;
+				cout << color << "[?]" << color_reset << "1 вопрос | Что такое HTTP?" << endl << endl;
+				cout << color << "[1]" << color_reset << "Язык разметки" << endl;
+				cout << color << "[2]" << color_reset << "Протокол передачи гипертекста" << endl;
+				cout << color << "[3]" << color_reset << "Среда разработки" << endl;
+				cout << color << "[4]" << color_reset << "Тип базы данных" << endl;
 				cout << "Выбрать ответ: ";
 				cin >> answer;
 
