@@ -1,0 +1,32 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        int a = 0, b = 0, res = 0;
+        
+        try
+        {
+            Console.WriteLine("Введите число a");
+            a = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Введите число b");
+            b = Convert.ToInt32(Console.ReadLine());
+            res = a / b;
+            Console.WriteLine("Результат: " + res);
+        }
+        catch (DivideByZeroException)
+        {
+            Console.WriteLine("Деление на ноль!");
+        }
+        catch (FormatException)
+        {
+            Console.WriteLine("Вы ввели не число!");
+        }
+        finally
+        {
+            Console.WriteLine("Напишите что вы думаете о программе");
+            Console.ReadLine();
+        }
+    }
+}
