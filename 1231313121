@@ -1,0 +1,24 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CubeScript : MonoBehaviour
+{
+    // 1. Private массив с целыми числами (int), 5 элементов
+    // Он не будет виден в инспекторе Unity
+    private int[] firstArray = new int[5];
+
+    // 2. Private массив со строками (string), 3 элемента, видимый для Unity
+    [SerializeField] 
+    private string[] secondArray = new string[3];
+
+    // 3. Динамический private массив (List), видимый для Unity
+    // В C# для динамических массивов чаще всего используется List
+    [SerializeField] 
+    private List<float> dynamicList = new List<float>();
+
+    void Start()
+    {
+        // Здесь можно инициализировать данные, если нужно
+    }
+}
