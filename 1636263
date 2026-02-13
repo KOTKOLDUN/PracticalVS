@@ -1,0 +1,29 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CubeScript : MonoBehaviour
+{
+    private int[] intArray = new int[5];
+
+    [SerializeField] 
+    private string[] stringArray = new string[3];
+
+    [SerializeField] 
+    private List<float> dynamicList = new List<float>();
+
+    void Start()
+    {
+        for (int i = 0; i < intArray.Length; i++)
+        {
+            intArray[i] = i;
+        }
+
+        stringArray[0] = "Item 1";
+        stringArray[1] = "Item 2";
+        stringArray[2] = "Item 3";
+
+        dynamicList.Add(10.5f);
+        dynamicList.Add(20.5f);
+    }
+}
