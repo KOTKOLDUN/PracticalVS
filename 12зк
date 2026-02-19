@@ -7,8 +7,8 @@ int main() {
 
 	setlocale(0, "");
 
-	string color = "\x1b[0m";
-	string color_reset = "\x1b[0m";
+	string color = "\x1b[0m"; // установка цвета
+	string color_reset = "\x1b[0m";  // конец раскраски
 	short select;  //выбрать пункт меню
 	short exit;  //выход из пунктов меню
 	short life = 3;  // жизни игрока
@@ -54,7 +54,6 @@ int main() {
 
 			cout << "Правила" << endl;
 			cout << "Игрок получает очки за правильный ответ на вопрос;" << endl;
-			cout << "Игрок проходит дальше за правильный ответ;" << endl;
 			cout << "Игрок теряет жизнь при неправильном ответе;" << endl;
 			cout << "[0] Выйти" << endl;
 			cout << "[/]Выберите пункт: ";
@@ -86,7 +85,7 @@ int main() {
 			cout << "Настройки" << endl;
 			cout << "[1]Редактирование имя игрока;" << endl;
 			cout << "[2]Редактирование вопросов в игре. Можно заменить на 8 - 10 - 12" << endl;
-			cout << "[3]Редактировать цвет интерфейса (это могут быть: вопросы, ответы, меню, цифры, что угодно)" << endl;
+			cout << "[3]Редактировать цвет интерфейса" << endl;
 			cout << "[0]Выход" << endl;
 			cout << "[/]Выберите пункт: ";
 			cin >> setting;
@@ -200,7 +199,7 @@ int main() {
 				cout << "Игрок: " << UserName << "  жизни: " << life << "  очки: " << o4ko << endl << endl;
 
 				// Вопрос 1
-				cout << color << "[?]" << color_reset << "1 вопрос | Что такое HTTP?" << endl << endl;
+				cout << color << "[?]" << color_reset << "1 вопрос | Что такое HTTP?" << endl;
 				cout << color << "[1]" << color_reset << "Язык разметки" << endl;
 				cout << color << "[2]" << color_reset << "Протокол передачи гипертекста" << endl;
 				cout << color << "[3]" << color_reset << "Среда разработки" << endl;
@@ -550,21 +549,6 @@ int main() {
 				Sleep(2000);
 			}
 		}
-		break;
-
-		default:
-			cout << "Неверный выбор! Попробуйте снова." << endl;
-			Sleep(1000);
-			system("cls");
-			cout << "Приветствуем вас!" << endl;
-			cout << "Меню:" << endl;
-			cout << "[1] Начать игру" << endl;
-			cout << "[2] Настройки" << endl;
-			cout << "[3] Правила" << endl;
-			cout << "[0] Выйти" << endl << endl;
-			cout << "[/]Выберите пункт: ";
-			cin >> select;
-			break;
 		}
 	}
 }
