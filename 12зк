@@ -121,7 +121,7 @@ int main() {
 				cout << "[4] Желтый: " << endl;
 				cout << "[5] Синий: " << endl;
 				cout << "[6] Фиолетовый: " << endl;
-				cout << "[7] Гей: " << endl;
+				cout << "[7] Голубой: " << endl;
 				cout << "[8] Белый: " << endl;
 				cout << "[] Выберете цвет: ";
 				cin >> col;
@@ -181,7 +181,7 @@ int main() {
 			cout << "Меню:" << endl;
 			cout << color << "[1]" << color_reset << "Начать игру" << endl;
 			cout << color << "[2]" << color_reset << "Настройки" << endl;
-			cout << color << "[3]" << color_reset << "Првила" << endl;
+			cout << color << "[3]" << color_reset << "Правила" << endl;
 			cout << color << "[0]" << color_reset << "Выход" << endl << endl;
 			cout << color << "[/]" << color_reset << "Выберете пункт:" << endl;
 			cin >> select;
