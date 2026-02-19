@@ -76,7 +76,7 @@ int main() {
 			}
 
 			break;
-			
+
 
 
 		case 2:  //настройки
@@ -151,8 +151,8 @@ int main() {
 				else if (col == 8) {
 					color = "\x1b[97m";
 				}
-				
-				
+
+
 
 
 				break;
@@ -215,7 +215,6 @@ int main() {
 				else {
 					cout << "\x1b[91mНе верный ответ!!! -1 жизнь\x1b[0m" << endl;
 					life--;
-					if (o4ko > 0) o4ko--;
 				}
 				Sleep(2000);
 				system("cls");
@@ -229,11 +228,11 @@ int main() {
 				}
 
 				// Вопрос 2
-				cout << "2. Какой язык программирования считается основным для веб-интерфейсов?" << endl;
-				cout << "[1] Python" << endl;
-				cout << "[2] Java" << endl;
-				cout << "[3] C++" << endl;
-				cout << "[4] JavaScript" << endl;
+				cout << color << "[?]" << color_reset << "2 вопрос | Какой язык программирования считается основным для веб - интерфейсов? " << endl;
+				cout << color << "[1]" << color_reset << "Python" << endl;
+				cout << color << "[2]" << color_reset << "Java" << endl;
+				cout << color << "[3]" << color_reset << "C++" << endl;
+				cout << color << "[4]" << color_reset << "JavaScript" << endl;
 				cout << "Выбрать ответ: ";
 				cin >> answer;
 
@@ -244,7 +243,6 @@ int main() {
 				else {
 					cout << "\x1b[91mНе верный ответ!!! -1 жизнь\x1b[0m" << endl;
 					life--;
-					if (o4ko > 0) o4ko--;
 				}
 				Sleep(2000);
 				system("cls");
@@ -258,11 +256,11 @@ int main() {
 				}
 
 				// Вопрос 3
-				cout << "3. Что означает аббревиатура SQL?" << endl;
-				cout << "[1] Simple Question Language" << endl;
-				cout << "[2] Structured Query Language" << endl;
-				cout << "[3] Sequential Query Logic" << endl;
-				cout << "[4] Standard Question List" << endl;
+				cout << color << "[?]" << color_reset << "3 вопрос | Что означает аббревиатура SQL?" << endl;
+				cout << color << "[1]" << color_reset << "Simple Question Language" << endl;
+				cout << color << "[2]" << color_reset << "Structured Query Language" << endl;
+				cout << color << "[3]" << color_reset << "Sequential Query Logic" << endl;
+				cout << color << "[4]" << color_reset << "Standard Question List" << endl;
 				cout << "Выбрать ответ: ";
 				cin >> answer;
 
@@ -273,7 +271,6 @@ int main() {
 				else {
 					cout << "\x1b[91mНе верный ответ!!! -1 жизнь\x1b[0m" << endl;
 					life--;
-					if (o4ko > 0) o4ko--;
 				}
 				Sleep(2000);
 				system("cls");
@@ -287,11 +284,11 @@ int main() {
 				}
 
 				// Вопрос 4
-				cout << "4. Какой символ используется для однострочного комментария в c++?" << endl;
-				cout << "[1] //" << endl;
-				cout << "[2] #" << endl;
-				cout << "[3] --" << endl;
-				cout << "[4] /*" << endl;
+				cout << color << "[?]" << color_reset << "4 вопрос | Какой символ используется для однострочного комментария в c++?" << endl;
+				cout << color << "[1]" << color_reset << "//" << endl;
+				cout << color << "[2]" << color_reset << "#" << endl;
+				cout << color << "[3]" << color_reset << "--" << endl;
+				cout << color << "[4]" << color_reset << "/*" << endl;
 				cout << "Выбрать ответ: ";
 				cin >> answer;
 
@@ -302,7 +299,6 @@ int main() {
 				else {
 					cout << "\x1b[91mНе верный ответ!!! -1 жизнь\x1b[0m" << endl;
 					life--;
-					if (o4ko > 0) o4ko--;
 				}
 				Sleep(2000);
 				system("cls");
@@ -323,11 +319,11 @@ int main() {
 				}
 
 				// Вопрос 5
-				cout << "5. Что такое 'ветвление' в Git?" << endl;
-				cout << "[1] Ошибка компиляции" << endl;
-				cout << "[2] Тип данных" << endl;
-				cout << "[3] Копия репозитория для изолированной работы" << endl;
-				cout << "[4] Команда для удаления файлов" << endl;
+				cout << color << "[?]" << color_reset << "5 вопрос | Что такое 'ветвление' в Git?" << endl;
+				cout << color << "[1]" << color_reset << "Ошибка компиляции" << endl;
+				cout << color << "[2]" << color_reset << "Тип данных" << endl;
+				cout << color << "[3]" << color_reset << "Копия репозитория для изолированной работы" << endl;
+				cout << color << "[4]" << color_reset << "Команда для удаления файлов" << endl;
 				cout << "Выбрать ответ: ";
 				cin >> answer;
 
@@ -338,7 +334,6 @@ int main() {
 				else {
 					cout << "\x1b[91mНе верный ответ!!! -1 жизнь\x1b[0m" << endl;
 					life--;
-					if (o4ko > 0) o4ko--;
 				}
 				Sleep(2000);
 				system("cls");
@@ -352,11 +347,11 @@ int main() {
 				}
 
 				// Вопрос 6
-				cout << "6. Какой тип данных в Python является неизменяемым?" << endl;
-				cout << "[1] Список (list)" << endl;
-				cout << "[2] Словарь (dict)" << endl;
-				cout << "[3] Кортеж (tuple)" << endl;
-				cout << "[4] Множество (set)" << endl;
+				cout << color << "[?]" << color_reset << "6 вопрос | Какой тип данных в Python является неизменяемым?" << endl;
+				cout << color << "[1]" << color_reset << "(list)" << endl;
+				cout << color << "[2]" << color_reset << "(dict)" << endl;
+				cout << color << "[3]" << color_reset << "(tuple)" << endl;
+				cout << color << "[4]" << color_reset << "(set)" << endl;
 				cout << "Выбрать ответ: ";
 				cin >> answer;
 
@@ -365,9 +360,8 @@ int main() {
 					cout << "\x1b[92mВерный ответ!!! +1 балл\x1b[0m" << endl;
 				}
 				else {
-					cout << "\x1b[91mНе верный ответ\x1b[0m" << endl;
+					cout << "\x1b[91mНе верный ответ!!! -1 жизнь\x1b[0m" << endl;
 					life--;
-					if (o4ko > 0) o4ko--;
 				}
 				Sleep(2000);
 				system("cls");
@@ -381,11 +375,11 @@ int main() {
 				}
 
 				// Вопрос 7
-				cout << "7. Что такое API?" << endl;
-				cout << "[1] Автоматический процессор инструкций" << endl;
-				cout << "[2] Интерфейс программирования приложений" << endl;
-				cout << "[3] Алгоритм поиска информации" << endl;
-				cout << "[4] Протокол передачи файлов" << endl;
+				cout << color << "[?]" << color_reset << "7 вопрос | Что такое API?" << endl;
+				cout << color << "[1]" << color_reset << "Автоматический процессор инструкций" << endl;
+				cout << color << "[2]" << color_reset << "Интерфейс программирования приложений" << endl;
+				cout << color << "[3]" << color_reset << "Алгоритм поиска информации" << endl;
+				cout << color << "[4]" << color_reset << "Протокол передачи файлов" << endl;
 				cout << "Выбрать ответ: ";
 				cin >> answer;
 
@@ -396,7 +390,6 @@ int main() {
 				else {
 					cout << "\x1b[91mНе верный ответ!!! -1 жизнь\x1b[0m" << endl;
 					life--;
-					if (o4ko > 0) o4ko--;
 				}
 				Sleep(2000);
 				system("cls");
@@ -410,11 +403,11 @@ int main() {
 				}
 
 				// Вопрос 8
-				cout << "8. Какой язык используется для стилизации веб-страниц?" << endl;
-				cout << "[1] HTML" << endl;
-				cout << "[2] SQL" << endl;
-				cout << "[3] CSS" << endl;
-				cout << "[4] JavaScript" << endl;
+				cout << color << "[?]" << color_reset << "8 вопрос | Какой язык используется для стилизации веб-страниц?" << endl;
+				cout << color << "[1]" << color_reset << "HTML" << endl;
+				cout << color << "[2]" << color_reset << "SQL" << endl;
+				cout << color << "[3]" << color_reset << "CSS" << endl;
+				cout << color << "[4]" << color_reset << "JavaScript" << endl;
 				cout << "Выбрать ответ: ";
 				cin >> answer;
 
@@ -425,7 +418,6 @@ int main() {
 				else {
 					cout << "\x1b[91mНе верный ответ!!! -1 жизнь\x1b[0m" << endl;
 					life--;
-					if (o4ko > 0) o4ko--;
 				}
 				Sleep(2000);
 				system("cls");
@@ -446,11 +438,11 @@ int main() {
 				}
 
 				// Вопрос 9
-				cout << "9. Что делает оператор '===' в JavaScript?" << endl;
-				cout << "[1] Присваивание значения" << endl;
-				cout << "[2] Сравнение с приведением типов" << endl;
-				cout << "[3] Строгое сравнение (значение и тип)" << endl;
-				cout << "[4] Объявление переменной" << endl;
+				cout << color << "[?]" << color_reset << "9 вопрос | Что делает оператор '===' в JavaScript?" << endl;
+				cout << color << "[1]" << color_reset << "Присваивание значения" << endl;
+				cout << color << "[2]" << color_reset << "Сравнение с приведением типов" << endl;
+				cout << color << "[3]" << color_reset << "Строгое сравнение (значение и тип)" << endl;
+				cout << color << "[4]" << color_reset << "Объявление переменной" << endl;
 				cout << "Выбрать ответ: ";
 				cin >> answer;
 
@@ -461,7 +453,6 @@ int main() {
 				else {
 					cout << "\x1b[91mНе верный ответ!!! -1 жизнь\x1b[0m" << endl;
 					life--;
-					if (o4ko > 0) o4ko--;
 				}
 				Sleep(2000);
 				system("cls");
@@ -475,11 +466,11 @@ int main() {
 				}
 
 				// Вопрос 10
-				cout << "10. Что такое 'рекурсия'?" << endl;
-				cout << "[1] Вызов функцией самой себя" << endl;
-				cout << "[2] Цикл for" << endl;
-				cout << "[3] Ошибка выполнения" << endl;
-				cout << "[4] Тип данных" << endl;
+				cout << color << "[?]" << color_reset << "10 вопрос | Что такое 'рекурсия'?" << endl;
+				cout << color << "[1]" << color_reset << "Вызов функцией самой себя" << endl;
+				cout << color << "[2]" << color_reset << "Цикл for" << endl;
+				cout << color << "[3]" << color_reset << "Ошибка выполнения" << endl;
+				cout << color << "[4]" << color_reset << "Тип данных" << endl;
 				cout << "Выбрать ответ: ";
 				cin >> answer;
 
@@ -490,7 +481,6 @@ int main() {
 				else {
 					cout << "\x1b[91mНе верный ответ!!! -1 жизнь\x1b[0m" << endl;
 					life--;
-					if (o4ko > 0) o4ko--;
 				}
 				Sleep(2000);
 				system("cls");
@@ -504,11 +494,11 @@ int main() {
 				}
 
 				// Вопрос 11
-				cout << "11. Какой порт обычно используется для HTTPS?" << endl;
-				cout << "[1] 80" << endl;
-				cout << "[2] 21" << endl;
-				cout << "[3] 443" << endl;
-				cout << "[4] 3306" << endl;
+				cout << color << "[?]" << color_reset << "11 вопрос | Какой порт обычно используется для HTTPS?" << endl;
+				cout << color << "[1]" << color_reset << "80" << endl;
+				cout << color << "[2]" << color_reset << "21" << endl;
+				cout << color << "[3]" << color_reset << "443" << endl;
+				cout << color << "[4]" << color_reset << "3306" << endl;
 				cout << "Выбрать ответ: ";
 				cin >> answer;
 
@@ -519,7 +509,6 @@ int main() {
 				else {
 					cout << "\x1b[91mНе верный ответ!!! -1 жизнь\x1b[0m" << endl;
 					life--;
-					if (o4ko > 0) o4ko--;
 				}
 				Sleep(2000);
 				system("cls");
@@ -533,11 +522,11 @@ int main() {
 				}
 
 				// Вопрос 12
-				cout << "12.Что такое переменная?(самый сложный вопрос)  " << endl;
-				cout << "[1] Место для хранения данных" << endl;
-				cout << "[2] Комментарий в коде" << endl;
-				cout << "[3] Условия выполнения кода" << endl;
-				cout << "[4] Незнаю" << endl;
+				cout << color << "[?]" << color_reset << "12 вопрос | Что такое переменная?(самый сложный вопрос)  " << endl;
+				cout << color << "[1]" << color_reset << "Место для хранения данных" << endl;
+				cout << color << "[2]" << color_reset << "Комментарий в коде" << endl;
+				cout << color << "[3]" << color_reset << "Условия выполнения кода" << endl;
+				cout << color << "[4]" << color_reset << "Незнаю" << endl;
 				cout << "Выбрать ответ: ";
 				cin >> answer;
 
@@ -548,7 +537,6 @@ int main() {
 				else {
 					cout << "\x1b[91mНе верный ответ!!! -1 жизнь\x1b[0m" << endl;
 					life--;
-					if (o4ko > 0) o4ko--;
 				}
 				Sleep(2000);
 				system("cls");
