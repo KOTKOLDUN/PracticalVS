@@ -1,0 +1,97 @@
+#include <iostream>
+using namespace std;
+int main() {
+	setlocale(0, "");
+	int SelectFigure;
+	int Size;
+	char Texture;
+	cout << "[+] Геометрические фигуры" << endl << endl;
+	cout << "[1]Треугольник" << endl;
+	cout << "[2]Плюсик" << endl;
+	cout << "[3]Крестик" << endl;
+	cout << "Выберите фигуру:";
+	cin >>SelectFigure;
+
+	switch (SelectFigure) {
+
+	case 1:
+		system("cls");
+
+		cout << "Введите размер фигуры: " << endl;
+		cin >> Size;
+		cout << "Выберите текстуру :" << endl;
+		cin >> Texture;
+		system("cls");
+
+		for (int y = 0; y < Size; y++) {
+			for (int x = 0; x < Size; x++) {
+				if (x == Size / 2 + y || x == Size / 2 - y || y == Size / 2) {
+					cout << Texture << " ";
+				}
+				else {
+					cout << " .";
+				}
+			}
+			cout << endl;
+		}
+		break;
+	
+	case 2:
+		system("cls");
+
+		cout << "Введите размер фигуры: " << endl;
+		cin >> Size;
+		cout << "Выберите текстуру :" << endl;
+		cin >> Texture;
+		system("cls");
+
+		for (int y = 0; y < Size; y++) {
+			for (int x = 0; x < Size; x++) {
+				if (x == Size / 2 || y == Size / 2) {
+					cout << Texture << " ";
+				}
+				else {
+					cout << ". ";
+				}
+			}
+			cout << endl;
+		}
+		break;
+
+	case 3:
+		system("cls");
+
+		cout << "Введите размер фигуры: " << endl;
+		cin >> Size;
+		cout << "Выберите текстуру :" << endl;
+		cin >> Texture;
+		system("cls");
+
+		for (int y = 0; y < Size; y++) {
+			for (int x = 0; x < Size; x++) {
+				if (x == y || y == Size - x - 1) {
+					cout << Texture << " ";
+				}
+				else {
+					cout << ". ";
+				}
+			}
+			cout << endl;
+		}
+
+		break;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
