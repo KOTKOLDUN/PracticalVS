@@ -1,0 +1,42 @@
+#include <iostream>
+#include <windows.h>
+using namespace std;
+
+// Самигуллин Тиханушкин
+double calculater(double num1 , double num2, char oper) {
+	if (oper == '+') {
+		return num1 + num2;
+	}
+	else if (oper == '-') {
+		return num1 - num2;
+	}
+	else if (oper == '*'){
+		return num1 * num2; 
+	}
+	else if (oper == '/' && num2 !=0) {
+		return num1 / num2;
+	}
+
+
+	return 0;
+}
+
+int main() {
+	while (true) {
+		system("cls");
+		setlocale(0, "");
+		double num1, num2;
+		char oper;
+
+		cout << "\x1b[91m[/]\x1b[0m Введите выражение: ";
+		cin >> num1 >> oper >> num2;
+
+		cout << "= " << calculater(num1, num2, oper);
+
+		Sleep(5000);
+	}
+		return 0;
+
+
+	
+}
