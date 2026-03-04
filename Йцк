@@ -1,0 +1,19 @@
+using UnityEngine;
+
+public class Instant : MonoBehaviour
+{
+    public GameObject[] _myObject;
+    
+    private void Start()
+    {
+        for(int i = 0; i < 10; i++) {
+            Instantiate(_myObject[Random.Range(0, _myObject.Length)], 
+                       new Vector3(RandomNumber(), RandomNumber(), RandomNumber()), 
+                       Quaternion.Euler(RandomNumber() * 36, RandomNumber() * 36, RandomNumber() * 36));
+        }
+    }
+
+    private int RandomNumber() {
+        return Random.Range(0, 10);
+    }
+}
