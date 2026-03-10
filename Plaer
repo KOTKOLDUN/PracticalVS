@@ -1,0 +1,30 @@
+using UnityEngine;
+
+public class MovePlayer : MonoBehaviour
+{
+    public float speed = 5f;
+    public float platformWidth = 5f;
+    public float platformHeight = 5f;
+    
+    private Vector3 startPosition;
+
+    void Start()
+    {
+        startPosition = transform.position;
+    }
+
+    void Update()
+    {
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+
+        Vector3 movement = new Vector3(horizontal, vertical, 0f) * speed * Time.deltaTime;
+        transform.Translate(movement);
+
+        if (Mathf.Abs(transform.position.x - startPosition.x) > platformWidth ||
+            Mathf.Abs(transform.position.y - startPosition.y) > platformHeight)
+        {
+            transform.position = startPosition;
+        }
+    }
+}
