@@ -1,0 +1,33 @@
+using UnityEngine;
+
+public class MovePlayer : MonoBehaviour
+{
+    public float speed = 5f;
+    public float platformWidth = 5f;  // для движения влево-вправо (по X)
+    public float platformLength = 5f;  // для движения вперёд-назад (по Z)
+    
+    private Vector3 startPosition;
+
+    void Start()
+    {
+        startPosition = transform.position;
+    }
+
+    void Update()
+    {
+        // Получаем ввод
+        float horizontal = Input.GetAxis("Horizontal"); // влево-право (A/D, ←/→)
+        float vertical = Input.GetAxis("Vertical");     // вперёд-назад (W/S, ↑/↓)
+
+        // Движение по X (влево-вправо) и Z (вперёд-назад), Y не меняется
+        Vector3 movement = new Vector3(horizontal, 0f, vertical) * speed * Time.deltaTime;
+        transform.Translate(movement);
+
+        // Проверка границ
+        if (Mathf.Abs(transform.position.x - startPosition.x) > platformWidth ||
+            Mathf.Abs(transform.position.z - startPosition.z) > platformLength)
+        {
+            transform.position = startPosition;
+        }
+    }
+}
