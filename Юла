@@ -1,0 +1,36 @@
+#include <iostream>
+using namespace std;
+
+int sum() {
+    return 4;
+}
+
+void printMessage() {
+    cout << "Привет" << endl;
+}
+
+int main() {
+    cout << sum() << endl;
+    printMessage();
+    
+    int color;
+    string text;
+    
+    cout << "Цвет (1-7): ";
+    cin >> color;
+    
+    cout << "Текст: ";
+    cin >> text;
+    
+    if(color == 1) cout << "\033[37m"; // Белый
+    if(color == 2) cout << "\033[90m"; // Серый
+    if(color == 3) cout << "\033[31m"; // Красный
+    if(color == 4) cout << "\033[33m"; // Желтый
+    if(color == 5) cout << "\033[97m"; // Серебристый
+    if(color == 6) cout << "\033[38;5;208m"; // Оранжевый
+    if(color == 7) cout << "\033[34m"; // Синий
+    
+    cout << text << "\033[0m" << endl;
+    
+    return 0;
+}
