@@ -1,0 +1,9 @@
+using UnityEngine;
+
+public class TriggerHandler : MonoBehaviour
+{
+    void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Вошел в триггер: " + other.gameObject.name);
+    }
+}
