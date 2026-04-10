@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int map[3][3] = {0}; // Чистое поле
+    int y, x, player = 1;
+
+    while (true) {
+        // 1. Рисуем поле (как на доске)
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (map[i][j] == 0) cout << "# ";
+                else if (map[i][j] == 1) cout << "X ";
+                else cout << "O ";
+            }
+            cout << endl;
+        }
+
+        // 2. Логика хода
+        cout << "Player " << player << ", enter y (0-2) and x (0-2): ";
+        cin >> y >> x;
+
+        map[y][x] = player; // Ставим символ
+
+        // 3. Переключаем игрока (1 -> 2 -> 1)
+        if (player == 1) player = 2;
+        else player = 1;
+        
+        cout << "---" << endl;
+    }
+
+    return 0;
+}
