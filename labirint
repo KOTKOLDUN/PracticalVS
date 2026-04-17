@@ -1,0 +1,74 @@
+#include <iostream>
+#include <conio.h> 
+
+using namespace std;
+
+const int WIDTH = 10;
+const int HEIGHT = 7;
+
+
+
+char maze[HEIGHT][WIDTH] = {
+    {'#', '#', '#', '#', '#', '#', '#', '#', '#', '#'},
+    {'#', ' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', '#'},
+    {'#', ' ', '#', ' ', '#', ' ', '#', '#', ' ', '#'},
+    {'#', ' ', '#', ' ', '#', ' ', '#', ' ', ' ', '#'},
+    {'#', ' ', '#', '#', '#', ' ', '#', ' ', '#', '#'},
+    {'#', ' ', ' ', ' ', ' ', ' ', '#', ' ', ' ', 'O'},
+    {'#', '#', '#', '#', '#', '#', '#', '#', '#', '#'}
+};
+
+
+int playerX = 1;
+int playerY = 1;
+
+
+void displayMaze() {
+    system("cls");
+    for (int i = 0; i < HEIGHT; i++) {
+        for (int j = 0; j < WIDTH; j++) {
+            if (i == playerY && j == playerX)
+                cout << "\x1b[91mI" << "\x1b[0m";
+            else
+                cout << maze[i][j];
+        }
+        cout << endl;
+    }
+}
+
+
+void movePlayer(char direction) {
+    switch (direction) {
+    case 'w': // Вверх
+        if (maze[playerY - 1][playerX] != '#') playerY--;
+        break;
+    case 's': // Вниз
+        if (maze[playerY + 1][playerX] != '#') playerY++;
+        break;
+    case 'a': // Влево
+        if (maze[playerY][playerX - 1] != '#') playerX--;
+        break;
+    case 'd': // Вправо
+        if (maze[playerY][playerX + 1] != '#') playerX++;
+        break;
+    }
+}
+
+int main() {
+    char direction;
+
+
+    while (true) {
+        displayMaze();
+
+
+        direction = _getch();
+
+
+        if (direction == 'q') break;
+
+        movePlayer(direction);
+    }
+
+    return 0;
+}
