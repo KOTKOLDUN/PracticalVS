@@ -1,0 +1,74 @@
+#include <iostream>
+#include <conio.h> // Для использования функции getch()
+
+using namespace std;
+
+// Определяем размеры лабиринта
+const int WIDTH = 10;
+const int HEIGHT = 7;
+
+// Создаём лабиринт
+char maze[HEIGHT][WIDTH] = {
+    {'#', '#', '#', '#', '#', '#', '#', '#', '#', '#'},
+    {'#', ' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', '#'},
+    {'#', ' ', '#', ' ', '#', ' ', '#', '#', ' ', '#'},
+    {'#', ' ', '#', ' ', ' ', ' ', '#', ' ', ' ', '#'},
+    {'#', ' ', '#', '#', '#', ' ', '#', ' ', '#', '#'},
+    {'#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#'},
+    {'#', '#', '#', '#', '#', '#', '#', '#', '#', '#'}
+};
+
+// Начальная позиция игрока
+int playerX = 1;
+int playerY = 1;
+
+// Функция для отображения лабиринта
+void displayMaze() {
+    system("cls"); // Очищаем экран
+    for (int i = 0; i < HEIGHT; i++) {
+        for (int j = 0; j < WIDTH; j++) {
+            if (i == playerY && j == playerX)
+                cout << 'P'; // Отображаем игрока
+            else
+                cout << maze[i][j]; // Отображаем лабиринт
+        }
+        cout << endl;
+    }
+}
+
+// Основная функция для управления игроком
+void movePlayer(char direction) {
+    switch (direction) {
+        case 'w': // Вверх
+            if (maze[playerY - 1][playerX] != '#') playerY--;
+            break;
+        case 's': // Вниз
+            if (maze[playerY + 1][playerX] != '#') playerY++;
+            break;
+        case 'a': // Влево
+            if (maze[playerY][playerX - 1] != '#') playerX--;
+            break;
+        case 'd': // Вправо
+            if (maze[playerY][playerX + 1] != '#') playerX++;
+            break;
+    }
+}
+
+int main() {
+    char direction;
+
+    // Основной игровой цикл
+    while (true) {
+        displayMaze(); // Отображаем лабиринт
+
+        // Ожидаем ввода игрока
+        direction = _getch(); // getch() возвращает символ без необходимости нажимать Enter
+
+        // Завершаем игру, если игрок нажал 'q'
+        if (direction == 'q') break;
+
+        movePlayer(direction); // Двигаем игрока в зависимости от нажатой клавиши
+    }
+
+    return 0;
+}
