@@ -1,0 +1,93 @@
+#include <windows.h>
+#include <vector>
+#include <string>
+
+// Координаты игрока
+int playerX = 100, playerY = 100;
+int playerHP = 100;
+
+// Структура препятствия
+struct Wall { RECT rect; };
+std::vector<Wall> walls = { {{200, 200, 300, 300}}, {{400, 100, 450, 250}} };
+
+// Функция отрисовки
+void OnPaint(HDC hdc) {
+    // 1. Рисуем траву (фон)
+    HBRUSH hGrass = CreateSolidBrush(RGB(34, 139, 34));
+    RECT clientRect;
+    GetClientRect(WindowFromDC(hdc), &clientRect);
+    FillRect(hdc, &clientRect, hGrass);
+    DeleteObject(hGrass);
+
+    // 2. Рисуем стены
+    HBRUSH hWall = CreateSolidBrush(RGB(100, 100, 100));
+    for (auto& w : walls) {
+        FillRect(hdc, &w.rect, hWall);
+    }
+    DeleteObject(hWall);
+
+    // 3. Рисуем игрока (Синий круг/квадрат)
+    HBRUSH hPlayer = CreateSolidBrush(RGB(0, 0, 255));
+    SelectObject(hdc, hPlayer);
+    Ellipse(hdc, playerX - 15, playerY - 15, playerX + 15, playerY + 15);
+    DeleteObject(hPlayer);
+
+    // 4. Интерфейс
+    TextOut(hdc, 10, 10, "RPG Mode: WinAPI", 16);
+    std::string hpStr = "HP: " + std::to_string(playerHP);
+    TextOut(hdc, 10, 30, hpStr.c_str(), hpStr.length());
+}
+
+// Главная функция обработки сообщений Windows
+LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
+    switch (uMsg) {
+    case WM_KEYDOWN: {
+        int speed = 10;
+        switch (wParam) {
+            case 'W': playerY -= speed; break;
+            case 'S': playerY += speed; break;
+            case 'A': playerX -= speed; break;
+            case 'D': playerX += speed; break;
+        }
+        InvalidateRect(hwnd, NULL, TRUE); // Перерисовать окно
+        break;
+    }
+    case WM_PAINT: {
+        PAINTSTRUCT ps;
+        HDC hdc = BeginPaint(hwnd, &ps);
+        OnPaint(hdc);
+        EndPaint(hwnd, &ps);
+        break;
+    }
+    case WM_DESTROY:
+        PostQuitMessage(0);
+        return 0;
+    }
+    return DefWindowProc(hwnd, uMsg, wParam, lParam);
+}
+
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
+    const char CLASS_NAME[] = "RPGWindowClass";
+    WNDCLASS wc = {};
+    wc.lpfnWndProc = WindowProc;
+    wc.hInstance = hInstance;
+    wc.lpszClassName = CLASS_NAME;
+    wc.hCursor = LoadCursor(NULL, IDC_ARROW);
+
+    RegisterClass(&wc);
+
+    HWND hwnd = CreateWindowEx(0, CLASS_NAME, "Pure C++ RPG (No Libs)", 
+        WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, 800, 600, 
+        NULL, NULL, hInstance, NULL);
+
+    if (hwnd == NULL) return 0;
+
+    ShowWindow(hwnd, nCmdShow);
+
+    MSG msg = {};
+    while (GetMessage(&msg, NULL, 0, 0)) {
+        TranslateMessage(&msg);
+        DispatchMessage(&msg);
+    }
+    return 0;
+}
