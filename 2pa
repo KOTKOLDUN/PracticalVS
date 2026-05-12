@@ -1,0 +1,170 @@
+#include <windows.h>
+#include <vector>
+#include <cmath>
+#include <string>
+#include <algorithm> // Для std::remove_if
+
+#define TIMER_TICK 1
+
+struct Vec2 {
+    float x, y;
+    Vec2 operator+(Vec2 v) const { return { x + v.x, y + v.y }; }
+    Vec2 operator-(Vec2 v) const { return { x - v.x, y - v.y }; }
+    Vec2 operator*(float f) const { return { x * f, y * f }; }
+    float length() const { return sqrtf(x * x + y * y); }
+    Vec2 normalize() const { float l = length(); return l > 0 ? Vec2{ x / l, y / l } : Vec2{ 0,0 }; }
+};
+
+struct Projectile { Vec2 pos; Vec2 vel; bool active; };
+struct Particle { Vec2 pos; Vec2 vel; int life; COLORREF color; };
+
+// Глобальные переменные
+Vec2 playerPos = { 400, 300 };
+Vec2 cameraPos = { 0, 0 };
+std::vector<Projectile> bullets;
+std::vector<Particle> particles;
+std::vector<Vec2> enemies = { {100, 100}, {700, 500}, {200, 800}, {900, 200} };
+
+void CreateExplosion(Vec2 pos, COLORREF color) {
+    for (int i = 0; i < 8; i++) {
+        float angle = (float)(rand() % 360) * 3.14f / 180.0f;
+        float speed = (float)(rand() % 5 + 2);
+        particles.push_back({ pos, {cosf(angle) * speed, sinf(angle) * speed}, 15 + rand() % 10, color });
+    }
+}
+
+void UpdateGame(HWND hwnd) {
+    // 1. Движение игрока
+    Vec2 move = { 0, 0 };
+    if (GetKeyState('W') & 0x8000) move.y -= 5;
+    if (GetKeyState('S') & 0x8000) move.y += 5;
+    if (GetKeyState('A') & 0x8000) move.x -= 5;
+    if (GetKeyState('D') & 0x8000) move.x += 5;
+    playerPos = playerPos + move;
+
+    // 2. Камера
+    cameraPos.x += (playerPos.x - cameraPos.x - 400) * 0.1f;
+    cameraPos.y += (playerPos.y - cameraPos.y - 300) * 0.1f;
+
+    // 3. Стрельба
+    static int cooldown = 0;
+    if ((GetKeyState(VK_LBUTTON) & 0x8000) && cooldown <= 0) {
+        POINT m; GetCursorPos(&m); ScreenToClient(hwnd, &m);
+        Vec2 target = { (float)m.x + cameraPos.x, (float)m.y + cameraPos.y };
+        Vec2 dir = (target - playerPos).normalize();
+        bullets.push_back({ playerPos, dir * 10, true });
+        cooldown = 12; 
+    }
+    if (cooldown > 0) cooldown--;
+
+    // 4. Логика пуль
+    for (auto& b : bullets) {
+        if (!b.active) continue;
+        b.pos = b.pos + b.vel;
+        
+        // Столкновение с врагами
+        for (auto& e : enemies) {
+            if ((b.pos - e).length() < 25) {
+                b.active = false;
+                CreateExplosion(e, RGB(255, 50, 50));
+                e = { (float)(rand() % 1200 - 600 + playerPos.x), (float)(rand() % 1200 - 600 + playerPos.y) };
+            }
+        }
+    }
+
+    // Очистка неактивных пуль
+    bullets.erase(std::remove_if(bullets.begin(), bullets.end(), [](const Projectile& b) {
+        return !b.active || b.pos.x < -2000 || b.pos.x > 2000; 
+    }), bullets.end());
+
+    // 5. Логика частиц
+    for (auto& p : particles) {
+        p.pos = p.pos + p.vel;
+        p.life--;
+    }
+    particles.erase(std::remove_if(particles.begin(), particles.end(), [](const Particle& p) {
+        return p.life <= 0; 
+    }), particles.end());
+}
+
+void Render(HWND hwnd, HDC hdc) {
+    RECT rect; GetClientRect(hwnd, &rect);
+    int w = rect.right, h = rect.bottom;
+
+    HDC memDC = CreateCompatibleDC(hdc);
+    HBITMAP memBM = CreateCompatibleBitmap(hdc, w, h);
+    SelectObject(memDC, memBM);
+
+    // Фон
+    HBRUSH hBG = CreateSolidBrush(RGB(15, 15, 20));
+    FillRect(memDC, &rect, hBG);
+    DeleteObject(hBG);
+
+    // Сетка
+    HPEN hGridPen = CreatePen(PS_SOLID, 1, RGB(30, 30, 40));
+    SelectObject(memDC, hGridPen);
+    for (int i = -2000; i < 2000; i += 100) {
+        MoveToEx(memDC, i - (int)cameraPos.x, -2000 - (int)cameraPos.y, NULL);
+        LineTo(memDC, i - (int)cameraPos.x, 2000 - (int)cameraPos.y);
+        MoveToEx(memDC, -2000 - (int)cameraPos.x, i - (int)cameraPos.y, NULL);
+        LineTo(memDC, 2000 - (int)cameraPos.x, i - (int)cameraPos.y);
+    }
+    DeleteObject(hGridPen);
+
+    // Враги
+    HBRUSH hE = CreateSolidBrush(RGB(200, 40, 40));
+    for (auto& e : enemies) {
+        Ellipse(memDC, (int)(e.x - cameraPos.x - 15), (int)(e.y - cameraPos.y - 15), 
+                       (int)(e.x - cameraPos.x + 15), (int)(e.y - cameraPos.y + 15));
+    }
+    DeleteObject(hE);
+
+    // Пули
+    HBRUSH hB = CreateSolidBrush(RGB(255, 255, 0));
+    for (auto& b : bullets) {
+        Ellipse(memDC, (int)(b.pos.x - cameraPos.x - 4), (int)(b.pos.y - cameraPos.y - 4), 
+                       (int)(b.pos.x - cameraPos.x + 4), (int)(b.pos.y - cameraPos.y + 4));
+    }
+    DeleteObject(hB);
+
+    // Частицы
+    for (auto& p : particles) {
+        SetPixel(memDC, (int)(p.pos.x - cameraPos.x), (int)(p.pos.y - cameraPos.y), p.color);
+    }
+
+    // Игрок
+    HBRUSH hP = CreateSolidBrush(RGB(0, 180, 255));
+    SelectObject(memDC, hP);
+    Rectangle(memDC, (int)(playerPos.x - cameraPos.x - 15), (int)(playerPos.y - cameraPos.y - 15), 
+                     (int)(playerPos.x - cameraPos.x + 15), (int)(playerPos.y - cameraPos.y + 15));
+    DeleteObject(hP);
+
+    BitBlt(hdc, 0, 0, w, h, memDC, 0, 0, SRCCOPY);
+    DeleteObject(memBM);
+    DeleteDC(memDC);
+}
+
+LRESULT CALLBACK WndProc(HWND hw, UINT msg, WPARAM wp, LPARAM lp) {
+    switch (msg) {
+    case WM_TIMER: UpdateGame(hw); InvalidateRect(hw, NULL, FALSE); break;
+    case WM_PAINT: { PAINTSTRUCT ps; HDC hdc = BeginPaint(hw, &ps); Render(hw, hdc); EndPaint(hw, &ps); } break;
+    case WM_DESTROY: PostQuitMessage(0); break;
+    default: return DefWindowProc(hw, msg, wp, lp);
+    }
+    return 0;
+}
+
+int WINAPI WinMain(HINSTANCE h, HINSTANCE, LPSTR, int n) {
+    WNDCLASS wc = { 0 }; 
+    wc.lpfnWndProc = WndProc; 
+    wc.hInstance = h; 
+    wc.lpszClassName = "GameClass";
+    wc.hCursor = LoadCursor(NULL, IDC_ARROW);
+    RegisterClass(&wc);
+    HWND hwnd = CreateWindow("GameClass", "C++ Survival RPG", WS_OVERLAPPEDWINDOW, 100, 100, 800, 600, 0, 0, h, 0);
+    ShowWindow(hwnd, n);
+    SetTimer(hwnd, TIMER_TICK, 16, NULL);
+    MSG msg;
+    while (GetMessage(&msg, 0, 0, 0)) { TranslateMessage(&msg); DispatchMessage(&msg); }
+    return 0;
+}
