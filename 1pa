@@ -1,0 +1,144 @@
+#include <windows.h>
+#include <vector>
+#include <cmath>
+#include <string>
+
+#define TIMER_TICK 1
+
+// Математика векторов для стрельбы и ИИ
+struct Vec2 {
+    float x, y;
+    Vec2 operator+(Vec2 v) { return {x + v.x, y + v.y}; }
+    Vec2 operator-(Vec2 v) { return {x - v.x, y - v.y}; }
+    Vec2 operator*(float f) { return {x * f, y * f}; }
+    float length() { return sqrt(x*x + y*y); }
+    Vec2 normalize() { float l = length(); return l > 0 ? Vec2{x/l, y/l} : Vec2{0,0}; }
+};
+
+struct Projectile { Vec2 pos; Vec2 vel; bool active; };
+struct Particle { Vec2 pos; Vec2 vel; int life; COLORREF color; };
+
+// Глобальные сущности
+Vec2 playerPos = {400, 300};
+Vec2 cameraPos = {0, 0};
+std::vector<Projectile> bullets;
+std::vector<Particle> particles;
+std::vector<Vec2> enemies = {{100, 100}, {700, 500}, {200, 800}};
+std::vector<RECT> walls = {{200, 200, 600, 250}, {300, 500, 350, 800}};
+
+// Эффект всплеска при попадании
+void CreateExplosion(Vec2 pos, COLORREF color) {
+    for(int i=0; i<10; i++) 
+        particles.push_back({pos, {(float)(rand()%10-5), (float)(rand()%10-5)}, 20, color});
+}
+
+void UpdateGame() {
+    // 1. Управление и Камера
+    Vec2 move = {0, 0};
+    if (GetAsyncKeyState('W')) move.y -= 5;
+    if (GetAsyncKeyState('S')) move.y += 5;
+    if (GetAsyncKeyState('A')) move.x -= 5;
+    if (GetAsyncKeyState('D')) move.x += 5;
+    playerPos = playerPos + move;
+    
+    // Плавное следование камеры
+    cameraPos.x += (playerPos.x - cameraPos.x - 400) * 0.1f;
+    cameraPos.y += (playerPos.y - cameraPos.y - 300) * 0.1f;
+
+    // 2. Стрельба (ЛКМ)
+    if (GetAsyncKeyState(VK_LBUTTON) & 0x8000) {
+        static int cooldown = 0;
+        if (cooldown-- <= 0) {
+            POINT mouse; GetCursorPos(&mouse); ScreenToClient(GetActiveWindow(), &mouse);
+            Vec2 target = {(float)mouse.x + cameraPos.x, (float)mouse.y + cameraPos.y};
+            Vec2 dir = (target - playerPos).normalize();
+            bullets.push_back({playerPos, dir * 12, true});
+            cooldown = 10; 
+        }
+    }
+
+    // 3. Логика пуль и врагов
+    for (auto& b : bullets) {
+        if (!b.active) continue;
+        b.pos = b.pos + b.vel;
+        for (auto& e : enemies) {
+            if ((b.pos - e).length() < 20) {
+                b.active = false;
+                e = {(float)(rand()%1000), (float)(rand()%1000)}; // Респаун врага
+                CreateExplosion(b.pos, RGB(255, 255, 0));
+            }
+        }
+    }
+
+    // 4. Логика частиц
+    for (int i = 0; i < particles.size(); i++) {
+        particles[i].pos = particles[i].pos + particles[i].vel;
+        if (--particles[i].life <= 0) particles.erase(particles.begin() + i);
+    }
+}
+
+void Render(HDC hdc) {
+    HDC memDC = CreateCompatibleDC(hdc);
+    HBITMAP memBM = CreateCompatibleBitmap(hdc, 800, 600);
+    SelectObject(memDC, memBM);
+
+    // Фон (пол)
+    HBRUSH hBG = CreateSolidBrush(RGB(20, 25, 30));
+    RECT r = {0,0,800,600}; FillRect(memDC, &r, hBG); DeleteObject(hBG);
+
+    // Сетка мира для ощущения движения
+    HPEN hGridPen = CreatePen(PS_SOLID, 1, RGB(40, 45, 50));
+    SelectObject(memDC, hGridPen);
+    for(int x = -2000; x < 2000; x+=100) {
+        MoveToEx(memDC, x - (int)cameraPos.x, -2000 - (int)cameraPos.y, NULL);
+        LineTo(memDC, x - (int)cameraPos.x, 2000 - (int)cameraPos.y);
+    }
+    DeleteObject(hGridPen);
+
+    // Враги
+    HBRUSH hEnemy = CreateSolidBrush(RGB(220, 50, 50));
+    for (auto& e : enemies) {
+        Ellipse(memDC, e.x - cameraPos.x - 15, e.y - cameraPos.y - 15, 
+                       e.x - cameraPos.x + 15, e.y - cameraPos.y + 15);
+    }
+    DeleteObject(hEnemy);
+
+    // Пули
+    HBRUSH hBullet = CreateSolidBrush(RGB(255, 255, 100));
+    for (auto& b : bullets) if(b.active) 
+        Ellipse(memDC, b.pos.x - cameraPos.x - 4, b.pos.y - cameraPos.y - 4, 
+                       b.pos.x - cameraPos.x + 4, b.pos.y - cameraPos.y + 4);
+    DeleteObject(hBullet);
+
+    // Игрок
+    HBRUSH hPlayer = CreateSolidBrush(RGB(0, 200, 255));
+    SelectObject(memDC, hPlayer);
+    RoundRect(memDC, playerPos.x - cameraPos.x - 15, playerPos.y - cameraPos.y - 15, 
+                     playerPos.x - cameraPos.x + 15, playerPos.y - cameraPos.y + 15, 10, 10);
+    DeleteObject(hPlayer);
+
+    // Частицы
+    for (auto& p : particles) {
+        SetPixel(memDC, p.pos.x - cameraPos.x, p.pos.y - cameraPos.y, p.color);
+    }
+
+    BitBlt(hdc, 0, 0, 800, 600, memDC, 0, 0, SRCCOPY);
+    DeleteObject(memBM); DeleteDC(memDC);
+}
+
+// Стандартный бойлерплейт WinAPI
+LRESULT CALLBACK WndProc(HWND hw, UINT msg, WPARAM wp, LPARAM lp) {
+    if (msg == WM_TIMER) { UpdateGame(); InvalidateRect(hw, NULL, FALSE); }
+    if (msg == WM_PAINT) { PAINTSTRUCT ps; Render(BeginPaint(hw, &ps)); EndPaint(hw, &ps); }
+    if (msg == WM_DESTROY) PostQuitMessage(0);
+    return DefWindowProc(hw, msg, wp, lp);
+}
+
+int WINAPI WinMain(HINSTANCE h, HINSTANCE, LPSTR, int n) {
+    WNDCLASS wc = {0}; wc.lpfnWndProc = WndProc; wc.hInstance = h; wc.lpszClassName = "FinalRPG";
+    wc.hCursor = LoadCursor(NULL, IDC_CROSS); RegisterClass(&wc);
+    HWND hwnd = CreateWindow("FinalRPG", "Extreme Pure C++ Engine", WS_OVERLAPPEDWINDOW, 100, 100, 800, 600, 0, 0, h, 0);
+    SetTimer(hwnd, TIMER_TICK, 16, NULL); ShowWindow(hwnd, n);
+    MSG msg; while (GetMessage(&msg, 0, 0, 0)) { TranslateMessage(&msg); DispatchMessage(&msg); }
+    return 0;
+}
