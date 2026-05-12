@@ -1,0 +1,92 @@
+#include <iostream>
+#include <conio.h>
+#include <windows.h>
+
+using namespace std;
+
+const int SIZE = 20;
+
+// Функция для управления курсором (убирает мигание и лаги)
+void setCursor(int x, int y) {
+    COORD coord = { (SHORT)x, (SHORT)y };
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+}
+
+// Функция скрытия текстового курсора
+void hideCursor() {
+    HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_CURSOR_INFO cursorInfo;
+    GetConsoleCursorInfo(consoleHandle, &cursorInfo);
+    cursorInfo.bVisible = false; 
+    SetConsoleCursorInfo(consoleHandle, &cursorInfo);
+}
+
+// ФУНКЦИЯ ВЫВОДА КАРТЫ
+void drawMap(int maze[SIZE][SIZE], int pX, int pY) {
+    setCursor(0, 0); // Возвращаемся в начало вместо очистки экрана
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            if (i == pY && j == pX) cout << "G";
+            else if (maze[i][j] == 1) cout << "#";
+            else if (maze[i][j] == 2) cout << "E";
+            else if (maze[i][j] == 3) cout << "~";
+            else cout << " ";
+        }
+        cout << "\n";
+    }
+}
+
+int main() {
+    hideCursor(); // Выключаем мигающий курсор
+
+    int maze[SIZE][SIZE] = {
+        {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+        {1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+        {1,0,1,0,1,0,1,1,1,1,1,1,1,1,1,0,1,1,0,1},
+        {1,0,1,0,0,0,0,0,0,3,3,3,0,0,1,0,1,0,0,1},
+        {1,0,1,1,1,1,1,1,0,3,1,3,0,0,1,0,1,0,1,1},
+        {1,0,0,0,0,0,0,1,0,3,1,3,0,0,0,0,1,0,0,1},
+        {1,1,1,1,1,1,0,1,0,1,1,1,0,1,1,1,1,1,0,1},
+        {1,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,1},
+        {1,0,1,1,0,1,1,1,1,1,1,1,1,1,0,1,1,1,0,1},
+        {1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,3,3,0,1},
+        {1,1,0,1,1,1,1,1,0,1,1,1,1,1,1,1,3,1,0,1},
+        {1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,3,1,0,1},
+        {1,0,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,0,1},
+        {1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+        {1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1},
+        {1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1},
+        {1,0,0,0,1,0,1,1,1,1,1,1,1,1,1,1,0,1,0,1},
+        {1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1},
+        {1,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,1,2,1},
+        {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
+    };
+
+    int x = 1, y = 1;
+
+    while (true) {
+        drawMap(maze, x, y);
+
+        if (maze[y][x] == 2) {
+            system("cls");
+            cout << "Победа!";
+            break;
+        }
+
+        char move = _getch();
+        int nx = x, ny = y;
+
+        if (move == 'w') ny--;
+        if (move == 's') ny++;
+        if (move == 'a') nx--;
+        if (move == 'd') nx++;
+
+        if (maze[ny][nx] != 1) {
+            if (maze[ny][nx] == 3) Sleep(100); // Замедление в воде
+            x = nx;
+            y = ny;
+        }
+    }
+
+    return 0;
+}
