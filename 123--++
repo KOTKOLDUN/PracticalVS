@@ -1,0 +1,110 @@
+#include <iostream>
+#include <windows.h>
+#include <conio.h>
+
+using namespace std;
+
+const int W = 10;
+const int H = 10;
+
+int map[H][W] =
+{
+    {1,1,1,1,1,1,1,1,1,1},
+    {1,0,0,0,0,0,0,0,0,1},
+    {1,0,1,1,1,0,1,1,0,1},
+    {1,0,0,0,1,0,0,1,0,1},
+    {1,1,1,0,1,1,0,1,0,1},
+    {1,0,0,0,0,0,0,1,0,1},
+    {1,0,1,1,1,1,0,1,0,1},
+    {1,0,0,0,0,1,0,0,0,1},
+    {1,2,2,0,0,0,0,2,2,1},
+    {1,1,1,1,1,1,1,1,1,1}
+};
+
+int px = 1;
+int py = 1;
+
+// Убрать курсор
+void hideCursor()
+{
+    HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
+
+    CONSOLE_CURSOR_INFO info;
+    info.bVisible = false;
+    info.dwSize = 1;
+
+    SetConsoleCursorInfo(h, &info);
+}
+
+// Перемещение курсора
+void cursor(int x, int y)
+{
+    COORD c;
+    c.X = x;
+    c.Y = y;
+
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), c);
+}
+
+// Вывод карты
+void draw()
+{
+    cursor(0, 0);
+
+    for (int y = 0; y < H; y++)
+    {
+        for (int x = 0; x < W; x++)
+        {
+            if (x == px && y == py)
+            {
+                cout << "@";
+            }
+            else if (map[y][x] == 1)
+            {
+                cout << "#";
+            }
+            else if (map[y][x] == 2)
+            {
+                cout << "~";
+            }
+            else
+            {
+                cout << " ";
+            }
+        }
+
+        cout << endl;
+    }
+}
+
+int main()
+{
+    hideCursor();
+
+    while (true)
+    {
+        draw();
+
+        if (_kbhit())
+        {
+            char key = _getch();
+
+            int nx = px;
+            int ny = py;
+
+            if (key == 'w') ny--;
+            if (key == 's') ny++;
+            if (key == 'a') nx--;
+            if (key == 'd') nx++;
+
+            // Нельзя ходить через стены
+            if (map[ny][nx] != 1)
+            {
+                px = nx;
+                py = ny;
+            }
+        }
+
+        Sleep(50);
+    }
+}
